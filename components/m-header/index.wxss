@@ -1,0 +1,32 @@
+
+@import '../../app.wxss';
+
+.m-header {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  background-color: #fff;
+  height: 88rpx;
+  text-align: center;
+
+}
+
+.m-header .icon-title {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10rpx;
+  width: 60rpx;
+  height: 64rpx;
+  margin-right: 18rpx;
+  background-image: url(https://www.ljcpro.cn/music/img/bilibili-line.afeda9bd.png);
+  background-size: 60rpx 64rpx;
+}
+
+.m-header .text {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  font-weight: 400;
+}

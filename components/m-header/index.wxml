@@ -1,0 +1,4 @@
+<view class="m-header">
+  <view class="icon-title"></view>
+  <text class="text theme-font-color theme-font-family">Bilibili Music</text>
+</view>

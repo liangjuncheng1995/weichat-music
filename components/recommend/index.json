@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "m-scroll": "/components/scroll/index",
+    "l-image-loader": "/components/l-image-loader/index"
+  }
+}

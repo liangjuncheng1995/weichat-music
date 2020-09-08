@@ -1,0 +1,32 @@
+@import '../../app.wxss';
+.container {
+  position: fixed;
+  width: 100%;
+  top: 88rpx;
+  z-index: 100;
+  background: #fff;
+}
+
+.header-flex   {
+  padding: 0 !important;
+}
+
+.line {
+  width: 30% !important;
+}
+
+.theme-font {
+  background: red !important;
+}
+
+.active {
+  color: #00a1d6 !important;
+}
+
+.inactive {
+  color: #222 !important;
+}
+
+.header-line {
+  border-bottom: none !important;
+}

@@ -1,0 +1,36 @@
+	<wxs src="../../wxs/util.wxs" module="placeHolder"></wxs>
+
+	<scroll-view style="height:{{contentHeight}}rpx" class="scroll" scroll-y="{{true}}">
+		<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
+			<view class="recommend" slot="content">
+				<view class="recommend-content">
+					<view wx:if="{{recommends.length>0}}" class="slider-container">
+						<swiper indicator-dots="{{true}}" autoplay indicator-color="hsla(0,0%,100%,.5)" indicator-active-color="hsla(0,0%,100%,.8)" circular="{{true}}">
+							<block wx:key="index" wx:for="{{recommends}}">
+								<swiper-item>
+									<image data-url="{{item.linkUrl}}" bindtap="gotoURL" mode="widthFix" webp="{{true}}" src="{{item.picUrl}}"></image>
+								</swiper-item>
+							</block>
+						</swiper>
+					</view>
+
+					<view class="recommend-list">
+						<view class="list-title theme-font-color">热门歌单推荐</view>
+						<view>
+							<view class="item" wx:for="{{discList}}" :key="index" bindtap="selectItem" data-item="{{item}}">
+								<view class="icon">
+									<!-- <image src="{{item.imgurl}}"></image> -->
+									<l-image-loader mode="aspectFill" webp style="width:120rpx;height:120rpx;" placeholder="{{placeholderURL}}" src="{{item.imgurl}}"> </l-image-loader>
+								</view>
+								<view class="text">
+									<view class="name theme-font-color">{{item.creator.name}}</view>
+									<view class="desc">{{item.dissname}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</l-loadmore>
+
+	</scroll-view>

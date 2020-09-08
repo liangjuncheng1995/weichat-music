@@ -1,0 +1,65 @@
+/* .container {
+  height: 100%;
+}
+
+.scroll {
+  height: 615px;
+} */
+
+@import '../../app.wxss';
+
+.recommend {
+  padding-top: 10px;
+}
+
+.slider-container image {
+  width: 100%;
+}
+
+.endClass {
+  position: relative !important;
+  top: -10px !important;
+}
+
+.recommend-list .list-title {
+  height: 130rpx;
+  line-height: 130rpx;
+  text-align: center;
+  font-size: 28rpx;
+  /* color: 主题色; */
+}
+
+.item {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 40rpx 40rpx 40rpx;
+}
+.icon {
+  flex: 0 0 120rpx;
+  width: 120rpx;
+  padding-right: 40rpx;
+  
+}
+
+.icon image {
+  width: 120rpx !important;
+  height: 120rpx;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  line-height: 40rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+}
+.name {
+  margin-bottom: 20rpx;
+  /* color: 主题色; */
+}
+.desc {
+  color: #999;
+}

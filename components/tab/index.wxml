@@ -1,0 +1,27 @@
+<view class="container">
+  <l-tabs bind:linchange="changeTabs" 
+    animated-for-line 
+    animated 
+    has-line 
+    swipeable
+    l-line-class="theme-background line"
+    l-active-class="theme-font-color"
+    l-inactive-class="inactive"
+    l-header-class="header-line"
+    equal-width="{{true}}"
+    content-height="{{contentHeight}}"
+  >
+    <l-tabpanel tab="推荐" key="one" slot="one">
+      <m-recommend contentHeight="{{contentHeight}}"></m-recommend>
+    </l-tabpanel>
+    <l-tabpanel tab="歌手" key="two" slot="two">
+      <view>歌手模块</view>
+    </l-tabpanel>
+    <l-tabpanel tab="热门" key="three" slot="three">
+      <view>热门模块</view>
+    </l-tabpanel>
+    <l-tabpanel tab="搜索" key="four" slot="four">
+      <view>搜索模块</view>
+    </l-tabpanel>
+  </l-tabs>
+</view>

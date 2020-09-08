@@ -1,0 +1,1 @@
+<l-loading show="{{true}}" color="#00a1d6"  full-screen="{{true}}" type="flash"></l-loading>

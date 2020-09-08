@@ -1,0 +1,12 @@
+.theme-font-color {
+  color: #00a1d6 !important;
+}
+
+.theme-background {
+  background: #00a1d6 !important;
+}
+
+
+.theme-font-family {
+  font-family: tahoma,arial,Hiragino Sans GB,微软雅黑,simsun,sans-serif;
+}

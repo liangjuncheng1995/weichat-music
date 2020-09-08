@@ -1,0 +1,32 @@
+@keyframes animateShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.lazy-image-comp .final-image {
+  animation: 0.5s animateShow forwards;
+}
+
+.lazy-image-comp .preview-image {
+  background-color: #eee;
+  width: 100%;
+}
+
+.relative {
+  position: relative;
+  width: 235rpx;height: 150rpx;
+}
+
+.final-image ,.preview-image {
+  position: absolute;
+  left: 0;
+  top:0;
+}
+.final-image {
+  z-index: 111;
+}

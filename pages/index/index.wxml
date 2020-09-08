@@ -1,0 +1,4 @@
+<view id="app">
+	<m-header></m-header>
+  <tab></tab>
+</view>
