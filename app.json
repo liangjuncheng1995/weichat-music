@@ -16,6 +16,7 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "l-loading": "/miniprogram_npm/lin-ui/loading/index",
-    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index"
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index"
   }
 }

@@ -1,0 +1,38 @@
+@import '../../app.wxss';
+
+.song-list .item{
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 128rpx;
+  font-size: 28rpx;
+}
+
+.rank {
+  flex: 0 0 50rpx;
+  width: 50rpx;
+  margin-right: 60rpx;
+  text-align: center;
+}
+
+.text {
+   /* color: 主题色; */
+  font-size: 36rpx;
+}
+
+.content {
+  flex: 1;
+  line-height: 40rpx;
+  overflow: hidden;
+}
+
+.name {
+  /* color: 主题色; */
+  /* 全局样式三点的处理 */
+}
+
+.desc {
+  margin-top: 8rpx;
+  color: #999;
+  /* 全局样式三点的处理 */
+}

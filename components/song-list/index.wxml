@@ -1,0 +1,23 @@
+<view class="song-list">
+  <view>
+    <view data-item="{{item}}" data-index="{{index}}" bindtap="selectItem" class="item" wx:for="{{songs}}" wx:key="{{index}}">
+      <view class="rank" wx:if="{{rank}}">
+        <text></text>
+      </view>
+      <view class="content">
+        <view class="name ellipseOne theme-font-color">{{item.name}}</view>
+        <view class="desc ellipseOne">{{p.getDesc(item)}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs module="p">
+  var getDesc = function(song) {
+    return song.singer + "·" + song.album
+  }
+
+  module.exports = {
+    getDesc: getDesc
+  }
+</wxs>

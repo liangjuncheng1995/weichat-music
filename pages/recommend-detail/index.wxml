@@ -1,2 +1,3 @@
-<!--pages/recommend-detail/index.wxml-->
-<text>pages/recommend-detail/index.wxml</text>
+<music-list title="{{title}}" bgImage="{{bgImage}}" songs="{{songs}}"></music-list>
+
+ <!-- <view class="test" style="width:100%;height:500px;background:red"></view> -->

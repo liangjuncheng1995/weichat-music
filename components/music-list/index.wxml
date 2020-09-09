@@ -1,0 +1,23 @@
+<view class="music-list">
+	<view class="title">{{title}}</view>
+	<view id="container" class="bg-image" style="background-image:url({{bgImage}})">
+		<view class="play-container">
+			<view class="play theme-border-color-1 theme-font-color" wx:if="{{songs.length > 0}}" bind:tap="random">
+				<l-icon name="icon-play" l-class="iconfont icon-play"></l-icon>
+				<text class="text">随机播放</text>
+			</view>
+		</view>
+		<view class="filter"></view>
+	</view>
+
+	<view class="bg-layer" style="transform:translate3d(0,{{translateY}}rpx,0)"></view>
+
+	<scroll-view bindscroll="scroll" class="list" scroll-y style="top: {{top}}rpx">
+		<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
+			<view class="song-list-container" slot="content">
+				<song-list songs="{{songs}}" bind:select="selectItem"></song-list>
+			</view>
+		</l-loadmore>
+	</scroll-view>
+
+</view>

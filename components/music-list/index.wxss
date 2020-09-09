@@ -1,0 +1,98 @@
+@import "../../app.wxss";
+
+.music-list{
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #ffffff;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  z-index: 40;
+  width: 80%;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.bg-image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 70%;
+  transform-origin: top;
+  background-size: cover;
+  z-index: 0;
+}
+
+
+.play-container {
+  position: absolute;
+  bottom: 40rpx;
+  z-index: 50;
+  width: 100%;
+}
+.play {
+  box-sizing: border-box;
+  width: 270rpx;
+  padding: 14rpx 0;
+  margin: 0 auto;
+  text-align: center;
+  /* border: 1rpx solid  主题色边框 */
+  /* color: 主题色; */
+  border-radius: 100rpx;
+  font-size: 0;
+}
+
+.icon-play {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12rpx;
+  font-size: 32rpx;
+}
+.text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+}
+
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(7,17,27,0.4);
+}
+
+.bg-layer {
+  position: relative;
+  height: 100%;
+  background: #fff;
+}
+
+.list {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+
+}
+.song-list-container {
+  padding: 40rpx 60rpx;
+  padding-bottom: 0;
+}
+
+.endClass {
+  position: relative !important;
+  top: -10px !important;
+}
+

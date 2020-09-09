@@ -73,10 +73,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "推荐的详情页面",
 					"pathName": "pages/recommend-detail/index",
-					"query": "dissid= 1771521340",
+					"query": "dissid=7559561831&dissname=经典华语 | 时光已祛，光辉难褪&imgurl= http%3A%2F%2Fp.qpic.cn%2Fmusic_cover%2FpLTahmMPSNpeYkuExXoa7NDjDpToAiaeo7bVhTTQxS8AicDFAsS4GJjIHM109VXckR%2F600%3Fn%3D1",
 					"scene": null
 				}
 			]

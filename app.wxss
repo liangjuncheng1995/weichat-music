@@ -6,7 +6,38 @@
   background: #00a1d6 !important;
 }
 
+.theme-border-color-1 {
+  border: 1px solid #00a1d6 !important;
+}
+
 
 .theme-font-family {
-  font-family: tahoma,arial,Hiragino Sans GB,微软雅黑,simsun,sans-serif;
+  font-family: tahoma, arial, Hiragino Sans GB, 微软雅黑, simsun, sans-serif;
+}
+
+.ellipseOne {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 643119 */
+  src: url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.eot');
+  src: url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.woff') format('woff'),
+    url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_643119_wwc8yy8pcam.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: iconfont !important;
+  color: #00a1d6 !important;
+}
+
+.l-icon-icon-play:before {
+  content: "\e622"
 }
