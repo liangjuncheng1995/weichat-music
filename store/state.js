@@ -8,4 +8,5 @@ export const state = {
   currentIndex: -1, //保存用户点击了哪一首歌曲，默认是-1
   playing: false, //播放的状态
   fullScreen: false, //正常的播放器是否正常加载，与模拟播放器的状态是相反的，只能显示一个
+  playId: '', //正在播放的歌曲id
 }

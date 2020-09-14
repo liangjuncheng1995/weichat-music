@@ -25,13 +25,14 @@ function findIndex(list, song) {
 
 
 export const selectPlay = async function ({
-  list,
   index
 }) {
+  let list = state.playlist
   if (!list[index].url) {
     const data = await Song.getPlayUrl(list[index].mid)
     list[index].url = data.url_mid.data.midurlinfo[0].purl
   }
+
   mutations(types.SET_SEQUENCE_LIST, list) //提交到循环的列表
 
   if (state.mode === playMode.random) {
@@ -48,7 +49,9 @@ export const selectPlay = async function ({
 
 }
 
-export const randomPlay = async function ({list}) {
+export const randomPlay = async function ({
+  list
+}) {
   mutations(types.SET_PLAY_MODE, playMode.random) //更改播放的模式
   mutations(types.SET_SEQUENCE_LIST, list) //设置循环的播放列表
   let randomList = shuffle(list)
@@ -60,6 +63,31 @@ export const randomPlay = async function ({list}) {
   mutations(types.SET_PLAYLIST, randomList) //设置播放列表
   mutations(types.SET_CURRENT_INDEX, 0)
   mutations(types.SET_FULL_SCREEN, true)
-  mutations(types.SET_PLAYING_STATE,true)
+  mutations(types.SET_PLAYING_STATE, true)
 
+}
+
+
+export const selectPrev = async function ({
+  list,
+  index
+}) {
+  if(!list[index].url) {
+    const data = await Song.getPlayUrl(list[index].mid)
+    list[index].url = data.url_mid.data.midurlinfo[0].purl
+    mutations(types.SET_PLAYLIST, list)
+
+  }
+  mutations(types.SET_CURRENT_INDEX, index)
+  mutations(types.SET_FULL_SCREEN, true)
+  mutations(types.SET_PLAYING_STATE, true)
+
+  
+}
+
+export const deleteSongList = function() {
+  mutations(types.SET_PLAYLIST, [])
+  mutations(types.SET_SEQUENCE_LIST, [])
+  mutations(types.SET_CURRENT_INDEX, -1)
+  mutations(types.SET_PLAYING_STATE, false)
 }

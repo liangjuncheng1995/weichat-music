@@ -41,7 +41,7 @@
 }
 .play {
   box-sizing: border-box;
-  width: 270rpx;
+  width: 340rpx;
   padding: 14rpx 0;
   margin: 0 auto;
   text-align: center;

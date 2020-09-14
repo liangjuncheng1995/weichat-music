@@ -17,13 +17,27 @@ App({
 
   mutation(type, data) {
     mutations(type, data)
+  },
+
+  globalData: {
+    data: state
+  },
+  
+  watch: function(method) {
+    var obj = this.globalData
+    Object.defineProperty(obj, 'data', {
+      configurable: true,
+      enumerable: true,
+      set: function(value) {
+        this.data = value.data
+        method(value) 
+      },
+      get: function() {
+        return this.globalData
+      }
+    })
   }
 
-
-  
-  
-
- 
 
   
 })

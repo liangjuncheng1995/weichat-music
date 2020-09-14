@@ -6,4 +6,5 @@ export const types = {
   SET_FULL_SCREEN: "SET_FULL_SCREEN", //设置迷你播放器的展示和隐藏
   SET_PLAYING_STATE: "SET_PLAYING_STATE", //设置播放的状态
   SET_PLAY_MODE: "SET_PLAY_MODE", //设置列表的播放状态
+  SET_PLAY_ID: "SET_PLAY_ID", //设置正在播放的歌曲id
 }

@@ -1,0 +1,4 @@
+<button bindtap="playMusic">播放</button>
+<view>
+    {{time}}
+</view>

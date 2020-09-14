@@ -1,6 +1,6 @@
 <view class="song-list">
   <view>
-    <view data-item="{{item}}" data-index="{{index}}" bindtap="selectItem" class="item" wx:for="{{songs}}" wx:key="{{index}}">
+    <view data-item="{{item}}" data-index="{{index}}" bindtap="selectItem" class="item" wx:for="{{songs}}" wx:key="index">
       <view class="rank" wx:if="{{rank}}">
         <text></text>
       </view>

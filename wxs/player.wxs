@@ -1,0 +1,52 @@
+
+var playMode = {
+  sequence: 0,
+  loop: 1,
+  random: 2
+}
+
+
+function cdCls(playing) {
+  return  playing ? "cd play" : "cd play pause"
+}
+
+function format(interval) {
+  interval = interval | 0
+  var minute = (interval / 60) | 0
+  var seconds = _pad(interval % 60)
+  return minute + ":" + seconds 
+}
+function _pad(num, n = 2) {
+  var len = num.toString().length;
+  while (len < n) {
+    num = "0" + num;
+    len++;
+  }
+  return num;
+}
+
+function playIcon(playing, name) {
+  if(name === "play") {
+    return playing ? "icon-time-out" : "icon-play"
+  } else {
+    return playing ? "iconfont icon-time-out" : "iconfont icon-play"
+  }
+  
+}
+
+function disableCls(songReady) {
+  return songReady ? "" : "disable"
+}
+
+function iconMode(mode) {
+  return mode ===playMode.sequence ? 'icon-sequence-play' : mode === playMode.loop ? 'icon-loop' : 'icon-random'
+}
+
+
+module.exports = {
+  cdCls: cdCls,
+  format: format,
+  playIcon: playIcon,
+  disableCls: disableCls,
+  iconMode: iconMode
+}

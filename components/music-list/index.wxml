@@ -12,7 +12,7 @@
 
 	<view class="bg-layer" style="transform:translate3d(0,{{translateY}}rpx,0)"></view>
 
-	<scroll-view bindscroll="scroll" class="list" scroll-y style="top: {{top}}rpx">
+	<scroll-view  bindscroll="scroll" class="list" scroll-y style="top: {{top}}rpx">
 		<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
 			<view class="song-list-container" slot="content">
 				<song-list songs="{{songs}}" bind:select="selectItem"></song-list>

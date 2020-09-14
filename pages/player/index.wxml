@@ -1,0 +1,95 @@
+<wxs src="../../wxs/player.wxs" module="player"></wxs>
+
+<view class="player" wx:if="{{playlist.length > 0}}">
+
+	<view class="normal-player" wx:if="{{fullScreen}}">
+		<view class="background">
+			<image src="{{currentSong.image}}" style="width:100%;height:100%;"></image>
+		</view>
+
+		<view class="top">
+			<view class="title ellipseOne">{{currentSong.name}}</view>
+			<view class="subtitle">{{currentSong.singer}}</view>
+		</view>
+
+		<view class="middle" bindtouchstart="middleTouchStart" bindtouchmove="middleTouchMove" bindtouchend="middleTouchEnd">
+			<view class="middle-l" style="transition-duration:{{transitionDurationMiddleL}};opacity:{{opacity}}">
+				<view class="cd-container">
+					<view class="{{player.cdCls(playing)}}">
+						<image class="image" src="{{currentSong.image}}"></image>
+					</view>
+				</view>
+				<view class="playing-lyric-container">
+					<view class="playing-lyric theme-font-color">{{playingLyric}}</view>
+				</view>
+			</view>
+
+
+			<view class="middle-r" style="transition-duration:{{transitionDurationLyricList}};transform:translate3d({{offsetWidth*2}}rpx,0,0)">
+				<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y style="height:{{scrollHeight}}rpx">
+					<view class="lyric-container">
+						<view wx:if="{{currentLyric}}">
+							<view class="{{currentLineNum === index ? 'text current' : 'text'}}" wx:key="index" wx:for="{{currentLyric.lines}}">
+								{{item.txt}}
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+
+		</view>
+
+		<view class="bottom">
+			<view class="dot-container">
+				<text class="dot {{currentShow === 'cd' ? 'active' : ''}}"></text>
+				<text class="dot {{currentShow === 'lyric' ? 'active' : ''}}"></text>
+			</view>
+
+			<!-- 进度条 -->
+			<view class="progress-container">
+				<text class="time time-l">{{player.format(currentTime)}}</text>
+				<view class="progress-bar-container">
+          <progress-bar percent="{{percent}}" bind:percentChange="onProgressBarChange"></progress-bar>
+        </view>
+				<text class="time time-r">{{player.format(currentSong.duration)}}</text>
+			</view>
+
+			<!-- 操作控件 -->
+			<view class="operators">
+				<view bindtap="changeMode" class="icon1 i-right theme-font-color">
+					<l-icon size="60" name="{{player.iconMode(mode)}}" l-class="iconfont {{player.iconMode(mode)}}"></l-icon>
+				</view>
+				<view bindtap="prev" class="icon1 i-right theme-font-color {{player.disableCls(songReady)}}">
+					<l-icon size="60" name="icon-prev-song" l-class="iconfont icon-prev-song"></l-icon>
+				</view>
+				<view bindtap="togglePlaying" class="icon1 i-center theme-font-color {{player.disableCls(songReady)}}">
+					<l-icon size="80" name="{{player.playIcon(playing,'play')}}" l-class="{{player.playIcon(playing)}}"></l-icon>
+				</view>
+				<view bindtap="next" class="icon1 i-left theme-font-color {{player.disableCls(songReady)}}">
+					<l-icon size="60" name="icon-next-song" l-class="iconfont icon-next-song"></l-icon>
+				</view>
+        <view class="icon1 i-left theme-font-color">
+          <l-icon size="60" name="icon-favoriteoutline" l-class="iconfont icon-favoriteoutline"></l-icon>
+        </view>
+			</view>
+		</view>
+
+
+
+
+	</view>
+</view>
+
+<l-dialog 
+	show="{{showDialog}}"
+	type="confirm"
+	title="非常抱歉"
+	content="该歌曲需要vip才能听，是否跳转qq音乐官网"
+	bind:linconfirm="confirm"
+	bind:lincancel="cancel"
+	l-cancel-class=""
+	l-confirm-class="confirm theme-font-color"
+	l-content-class="dialog-content"
+/>
+
+<v-toast id="van-toast" />

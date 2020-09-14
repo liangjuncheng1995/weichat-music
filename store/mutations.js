@@ -29,6 +29,8 @@ export function mutations(type, data) {
     case types.SET_PLAY_MODE: 
       set_play_mode(data)
       break;
+    case types.SET_PLAY_ID: 
+      set_play_id(data)
   }
 
 }
@@ -59,4 +61,8 @@ function set_playing_state(flag) {//设置歌曲的播放状态
 
 function set_play_mode(mode) { //设置播放列表的播放模式
   state.mode = mode
+}
+
+function set_play_id(id) { //设置正在播放的歌曲的id
+  state.playId = id
 }

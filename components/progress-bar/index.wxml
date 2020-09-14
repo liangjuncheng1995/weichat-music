@@ -1,0 +1,8 @@
+<view class="progress-bar" bindtap="progressClick">
+  <view class="bar-inner">
+    <view style="width:{{2*offsetWidth}}rpx" id="progress" class="progress theme-background"></view>
+    <view class="progress-btn-container" style="transform:translate3d({{2*offsetWidth}}rpx,0rpx,0rpx)" bindtouchstart="progressTouchStart" bindtouchmove="progressTouchMove" bindtouchend="progressTouchEnd">
+      <view class="progress-btn theme-background"></view>
+    </view>
+  </view>
+</view>

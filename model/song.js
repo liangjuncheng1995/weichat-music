@@ -1,9 +1,13 @@
 import {
-  commonParams
+  commonParams, ERR_OK
 } from "../config/index.js"
 import {
   Http
 } from "../utils/http"
+
+import {
+  Base64
+} from "../utils/base64"
 
 class Song {
   constructor({
@@ -24,6 +28,35 @@ class Song {
     this.duration = duration
     this.image = image
     this.url = url
+  }
+
+  async getLyric() {
+    if (this.lyric) {
+      return this.lyric
+    }
+    const result = await this.GetLyric(this.mid)
+    if(result.retcode === ERR_OK) {
+      this.lyric = Base64.decode(result.lyric)
+      return this.lyric
+    } else {
+      return 'no lyric'
+    }
+  }
+
+  async GetLyric(mid) {
+    const data = Object.assign({}, commonParams, {
+      songmid: mid,
+      platform: 'yqq',
+      hostUin: 0,
+      needNewCode: 0,
+      categoryId: 10000000,
+      pcachetime: +new Date(),
+      format: 'json'
+    })
+    return await Http.request({
+      url: "/getLyric",
+      data
+    })
   }
 
 
@@ -49,7 +82,7 @@ class Song {
 
     return await Http.request({
       url: "/getPlayUrl",
-      data:{
+      data: {
         comm: data,
         url_mid: urlMid
       },

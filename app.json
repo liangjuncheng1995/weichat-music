@@ -4,7 +4,13 @@
     "pages/index/index",
     "pages/home/home",
     "pages/webView/webView",
-    "pages/recommend-detail/index"
+    "pages/recommend-detail/index",
+    "pages/player/index",
+    "pages/test/index"
+  ],
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,6 +23,8 @@
   "usingComponents": {
     "l-loading": "/miniprogram_npm/lin-ui/loading/index",
     "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
-    "l-icon": "/miniprogram_npm/lin-ui/icon/index"
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
+    "v-toast": "/miniprogram_npm/@vant/weapp/toast/index"
   }
 }

@@ -1,0 +1,39 @@
+@import '../../app.wxss';
+
+.progress-bar {
+  height: 60rpx;
+}
+
+.bar-inner {
+  position: relative;
+  top: 26rpx;
+  height: 8rpx;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  /* background: $theme-color; */
+}
+
+.progress-btn-container {
+  position: absolute;
+  left: -16rpx;
+  top: -26rpx;
+  width: 60rpx;
+  height: 60rpx;
+
+}
+
+.progress-btn {
+  position: relative;
+  top: 14rpx;
+  left: 14rpx;
+  box-sizing: border-box;
+  width: 32rpx;
+  height: 32rpx;
+  border: 6rpx solid #fff;
+  border-radius: 50%;
+  /* background: $theme-color; */
+}

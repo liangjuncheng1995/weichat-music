@@ -64,18 +64,46 @@ Component({
    */
   methods: {
 
-    selectItem(e) {
-      selectPlay({
-        list: this.properties.songs,
+    async selectItem(e) {
+      console.log(this.properties.songs)
+      await selectPlay({
         index: e.detail.index
+      })
+
+      const param = this._combinaParam(this.properties.songs, e.detail.index)
+      //分享测试
+      // wx.navigateTo({
+      //   url: `/pages/player/index?${param}`,
+      // })
+      //正常点击跳转
+      wx.navigateTo({
+        url: `/pages/player/index`,
       })
     },
 
     random() {
-      randomPlay({
-        list: this.properties.songs
-      })
+      // randomPlay({
+      //   list: this.properties.songs
+      // })
+      // wx.navigateTo({
+      //   url: `/pages/player/index`,
+      // })
     }, 
+
+    _combinaParam(songs, index) {
+      let that = songs[index]
+      const p = [
+        "id=" + that.id,
+        "mid=" + that.mid,
+        "singer=" + that.singer,
+        "name=" + that.name,
+        "album=" + that.album,
+        "duration=" + that.duration,
+        "image=" + encodeURIComponent(that.image),
+        "url=" +  encodeURIComponent(that.url)
+      ].join('&')
+      return p
+    },
 
     _getBgHeight() {
       var query = wx.createSelectorQuery().in(this);

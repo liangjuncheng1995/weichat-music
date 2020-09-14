@@ -10,6 +10,14 @@
   border: 1px solid #00a1d6 !important;
 }
 
+.disable view {
+  color: rgba(0, 161, 214, 0.3) !important;
+}
+
+.current {
+  color:#09bffb !important; 
+}
+
 
 .theme-font-family {
   font-family: tahoma, arial, Hiragino Sans GB, 微软雅黑, simsun, sans-serif;
@@ -41,3 +49,39 @@
 .l-icon-icon-play:before {
   content: "\e622"
 }
+
+.l-icon-icon-time-out:before {
+  content: "\e600"
+}
+
+.l-icon-icon-loop:before {
+  content: "\e66d"
+}
+
+.l-icon-icon-sequence-play:before {
+  content: "\e671"
+}
+
+.l-icon-icon-random:before {
+  content: "\e672"
+}
+
+.l-icon-icon-prev-song:before {
+  content: "\e6fe"
+}
+
+.l-icon-icon-next-song:before {
+  content: "\e6ff"
+}
+
+.l-icon-icon-shoucang:before {
+  content: "\e60c"
+}
+
+.l-icon-icon-favoriteoutline:before {
+  content: "\e627"
+}
+
+
+
+

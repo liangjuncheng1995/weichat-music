@@ -1,3 +1,7 @@
+import {
+  netWorkurl
+} from '../../config/index'
+
 // pages/webView/webView.js
 Page({
 
@@ -17,8 +21,8 @@ Page({
         loadingURL: options.url
       })
     } else {
-      wx.showToast({
-        title: '获取链接失败',
+      this.setData({
+        loadingURL: netWorkurl
       })
     }
   },

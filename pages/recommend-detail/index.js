@@ -4,6 +4,8 @@ import {
 import {
   createSong
 } from "../../model/song"
+import { mutations } from "../../store/mutations"
+import { types } from "../../store/mutation-types"
 
 
 // pages/recommend-detail/index.js
@@ -26,6 +28,12 @@ Page({
     this.setTitleImage(options)
   },
 
+  onShow() {
+    if(this.data.songs.length > 0) { //数据重新入库
+      mutations(types.SET_PLAYLIST, this.data.songs)
+    }
+  },
+
   setTitleImage(options) {
     this.setData({
       title: options.dissname,
@@ -38,6 +46,7 @@ Page({
     this.setData({
       songs: this._normalizeSongs(result.cdlist[0].songlist)
     })
+    mutations(types.SET_PLAYLIST, this.data.songs)//保存数据到仓库
   },
 
   _normalizeSongs(list) {
