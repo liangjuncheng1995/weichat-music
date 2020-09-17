@@ -25,6 +25,7 @@
     "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
-    "v-toast": "/miniprogram_npm/@vant/weapp/toast/index"
+    "v-toast": "/miniprogram_npm/@vant/weapp/toast/index",
+    "m-mini-player": "/components/mini-player/index"
   }
 }

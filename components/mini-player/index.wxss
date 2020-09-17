@@ -1,0 +1,110 @@
+@import '../../app.wxss';
+
+.mini-player {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 180;
+  width: 100%;
+  height: 120rpx;
+  background: #333;
+}
+
+.icon-img {
+  flex: 0 0 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  padding: 0 20rpx 0 40rpx;
+
+}
+
+.icon-img .circle-img {
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  line-height: 40rpx;
+  overflow: hidden;
+}
+
+.text .name {
+  margin-bottom: 4rpx;
+  font-size: 28rpx;
+  color: #fff;
+  /* @include ellipseOne; */
+}
+
+.text .desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 2555, 0.3);
+  /* @include ellipseOne; */
+}
+
+.control {
+  flex: 0 0 60rpx;
+  width: 60rpx;
+  padding: 0 20rpx;
+  position: relative;
+}
+
+.control-playlist {
+  flex: 0 0 60rpx;
+  width: 60rpx;
+  padding: 0 20rpx;
+}
+
+
+.icon-playlist {
+  font-size: 60rpx;
+  /* color: $theme-color-a; */
+}
+
+.circle {
+  /* color: red; */
+  position: absolute;
+  top: -18.5px;
+  z-index: 111;
+  left: 10px;
+}
+
+.circle .van-circle {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+.playMiniIcon {
+  /* position: absolute !important;
+  z-index: 1 !important;
+  left: 0rpx !important;
+  top: 1rpx important; */
+}
+
+
+
+/* cd旋转的动画 */
+.play {
+  animation: rotate 20s linear infinite;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

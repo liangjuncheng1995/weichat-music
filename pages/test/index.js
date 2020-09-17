@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    percent: 0
   },
 
   /**
@@ -27,6 +27,15 @@ Page({
       })
     })
     // bgMusic.play();
+
+    setInterval(() => {
+      var d = this.data.percent + 0.1
+      this.setData({
+        percent: d
+      })
+      console.log(this.data.percent)
+    },1000)
+
   },
 
   playMusic: function () {

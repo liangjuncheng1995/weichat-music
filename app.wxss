@@ -2,6 +2,10 @@
   color: #00a1d6 !important;
 }
 
+.theme-font-color-a {
+  color: rgba(0, 161, 214, 0.3) !important;
+}
+
 .theme-background {
   background: #00a1d6 !important;
 }
@@ -81,6 +85,21 @@
 .l-icon-icon-favoriteoutline:before {
   content: "\e627"
 }
+
+.l-icon-icon-playlist:before {
+  content: "\e850"
+}
+
+.l-icon-icon-mini-play:before {
+  content: "\e737";
+  color: #5ecaee !important;
+}
+
+.l-icon-icon-mini-pause:before {
+  content: "\e639";
+  color: #5ecaee !important;
+}
+
 
 
 

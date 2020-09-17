@@ -79,8 +79,8 @@ export const selectPrev = async function ({
 
   }
   mutations(types.SET_CURRENT_INDEX, index)
-  mutations(types.SET_FULL_SCREEN, true)
-  mutations(types.SET_PLAYING_STATE, true)
+  // mutations(types.SET_FULL_SCREEN, true)
+  // mutations(types.SET_PLAYING_STATE, true)
 
   
 }

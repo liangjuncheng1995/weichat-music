@@ -31,8 +31,17 @@ function playIcon(playing, name) {
   } else {
     return playing ? "iconfont icon-time-out" : "iconfont icon-play"
   }
-  
 }
+
+ 
+function playMiniIcon(playing, name) {
+  if(name === "play") {
+    return playing ? "icon-mini-pause" : "icon-mini-play"
+  } else {
+    return playing ? "iconfont icon-mini-pause" : "iconfont icon-mini-play"
+  }
+}
+
 
 function disableCls(songReady) {
   return songReady ? "" : "disable"
@@ -42,11 +51,23 @@ function iconMode(mode) {
   return mode ===playMode.sequence ? 'icon-sequence-play' : mode === playMode.loop ? 'icon-loop' : 'icon-random'
 }
 
+function activeColor() {
+  return "#00a1d6"
+}
+
+function backgroundColor () {
+  return "#5ecaee"
+
+}
+
 
 module.exports = {
   cdCls: cdCls,
   format: format,
   playIcon: playIcon,
   disableCls: disableCls,
-  iconMode: iconMode
+  iconMode: iconMode,
+  activeColor: activeColor,
+  backgroundColor: backgroundColor,
+  playMiniIcon: playMiniIcon
 }

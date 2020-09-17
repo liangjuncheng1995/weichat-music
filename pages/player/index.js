@@ -39,7 +39,7 @@ Page({
     currentSong: {},
     playlist: [],
     sequenceList: [],
-    fullScreen: true,
+    fullScreen: false,
     playing: false,
     mode: 0,
 
@@ -101,6 +101,8 @@ Page({
     this.data.playing = res.playing
     this.data.mode = res.mode
 
+    console.log("播放的状态：")
+    console.log(this.data.playing)
 
     if (!this.data.currentSong.url) { //vip的歌曲提示
       this.setData({
@@ -109,69 +111,74 @@ Page({
       return
     }
 
-    if (this.data.playing) {
-      if(state.playId !== this.data.currentSong.id) {
-        this.setPlayData()
-      }
+    if (state.playId !== this.data.currentSong.id) {
+      //设置正在播放的歌曲id
+      mutations(types.SET_PLAY_ID, this.data.currentSong.id)
+      this.setPlayData()
+    }
+    if(this.data.playing) {
       audio.play()
+    }
+    if (state.fullScreen) {//mini播放器存在的话就不用执行监听了
+     
       audio.onTimeUpdate(() => {
         this.setData({
           currentTime: audio.currentTime,
           percent: audio.currentTime / this.data.currentSong.duration
         })
       })
+    }
 
-      audio.onCanplay((res) => {
-        this.setData({
-          songReady: true
-        })
-      })
+
+    audio.onCanplay((res) => {
       this.setData({
         songReady: true
       })
-     
-      audio.onPlay((res) => {
-        console.log("onPlay")
-        this.setPlay()
-      })
-      audio.onPause(() => {
-        console.log("onPause")
-        this.setPause()
-      })
-      audio.onEnded(() => {
-        this.EndEdSet()
-      })
-      audio.onNext(() => {
-        this.next()
-      })
-      audio.onPrev(() => {
-        this.prev()
-      })
-      audio.onStop(() => {
-        console.log("用户删除了播放器")
-        this.setData({
-          DeleteSystemMusic: true
-        })
-        this.setPause()
-      })
-      audio.onWaiting(() => {
-        console.log("音乐正在加载中")
-      })
-      audio.onError(() => {
-        console.log("音乐错误")
-      })
+    })
+    this.setData({
+      songReady: true
+    })
 
-      if (this.data.currentLyric) {
-        //切换歌曲的时候，如果已经有this.currentLyric了就停止之前
-        this.data.currentLyric.stop();
-      }
 
-      this.getLyric() //获取歌词
-      this.setScrollHeight() //设置歌词的滚动区域
 
-    } else {
-      console.log("播放的状态没有更改")
+    audio.onPlay((res) => {
+      console.log("onPlay")
+      this.setPlay()
+    })
+    audio.onPause(() => {
+      console.log("onPause")
+      this.setPause()
+    })
+    audio.onEnded(() => {
+      this.EndEdSet()
+    })
+    audio.onNext(() => {
+      this.next()
+    })
+    audio.onPrev(() => {
+      this.prev()
+    })
+    audio.onStop(() => {
+      console.log("用户删除了播放器")
+      this.setData({
+        DeleteSystemMusic: true
+      })
+      this.setPause()
+    })
+    audio.onWaiting(() => {
+      console.log("音乐正在加载中")
+    })
+    audio.onError(() => {
+      console.log("音乐错误")
+    })
+
+    if (this.data.currentLyric) {
+      //切换歌曲的时候，如果已经有this.currentLyric了就停止之前
+      this.data.currentLyric.stop();
     }
+
+    this.getLyric() //获取歌词
+    this.setScrollHeight() //设置歌词的滚动区域
   },
 
   setPlayData() {
@@ -180,7 +187,7 @@ Page({
   },
 
   setPlay() {
-   
+
     this.setData({
       playing: true
     })
@@ -282,14 +289,21 @@ Page({
       this.setData({
         currentLyric: new Lyric(resultLyric, this.handleLyric)
       })
-      if (this.data.playing) {
-        if(state.playId !== this.data.currentSong.id) {
-          this.data.currentLyric.play()
-        } else {//点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
-          const percent = audio.currentTime / this.data.currentSong.duration
+      if (state.playId !== this.data.currentSong.id) {
+        this.data.currentLyric.play()
+      } else { //点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
+        const audioCurrentTime = audio.currentTime || 0
+        const percent = audioCurrentTime / this.data.currentSong.duration
+        if(this.data.playing) {
+          this.data.currentLyric.seek(audioCurrentTime * 1000)
+        } else {
           const currentTime = this.data.currentSong.duration * percent
-          this.data.currentLyric.seek(currentTime * 1000)
+          this.data.currentLyric.setPlayLyric(currentTime * 1000)
         }
+        //需要同步下进度条的进度
+        this.setData({
+          percent
+        })
       }
     } else {
       this.setData({
@@ -420,7 +434,7 @@ Page({
 
     if (this.data.DeleteSystemMusic) { //如果删除了系统的播放器
       mutations(types.SET_PLAYING_STATE, true)
-      mutations(types.SET_PLAY_ID, "")//需要把正在播放歌曲id也需要删除
+      mutations(types.SET_PLAY_ID, "") //需要把正在播放歌曲id也需要删除
       this.loadingData()
       this.setData({
         DeleteSystemMusic: false
@@ -439,7 +453,12 @@ Page({
     })
 
     if (this.data.currentLyric) {
-      this.data.currentLyric.togglePlay()
+      if (getter.playing) {
+        const audioCurrentTime = audio.currentTime
+        this.data.currentLyric.seek(audioCurrentTime * 1000)
+      } else {
+        this.data.currentLyric.togglePlay()
+      }
     }
     if (getter.playing) {
       audio.play()
@@ -521,6 +540,6 @@ Page({
   onUnload() {
     console.log("退出了播放器")
     console.log(this.data.currentSong)
-    mutations(types.SET_PLAY_ID, this.data.currentSong.id)
+    mutations(types.SET_FULL_SCREEN, false)
   }
 })

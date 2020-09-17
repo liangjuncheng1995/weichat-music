@@ -131,4 +131,9 @@ export class Lyric {
   seek(offset) {
     this.play(offset)
   }
+
+  setPlayLyric(offset) {
+    const i = this._findCurNum(offset)
+    this._callHandler(i - 1)
+  }
 }

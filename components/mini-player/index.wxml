@@ -1,0 +1,19 @@
+<wxs src="../../wxs/player.wxs" module="player"></wxs>
+
+<view bindtap="open" class="mini-player" wx:if="{{!fullScreen && currentIndex > -1}}">
+	<view class="icon-img">
+		<image src="{{currentSong.image}}" class="circle-img {{player.cdCls(playing)}}"></image>
+	</view>
+	<view class="text">
+		<view class="name">{{currentSong.name}}</view>
+		<view class="desc">{{currentSong.singer}}</view>
+	</view>
+	<view class="control">
+		<l-circle inner-color="#333" active-color="{{player.activeColor()}}" background-color="{{player.backgroundColor()}}" outer-diameter="60" inner-diameter="48" l-class="cku" percent="{{percent*100}}">
+			<l-icon catchtap="togglePlaying" size="80" name="{{player.playMiniIcon(playing,'play')}}" l-class="playMiniIcon {{player.playMiniIcon(playing)}}"></l-icon>
+		</l-circle>
+	</view>
+	<view class="control-playlist">
+		<l-icon size="60" name="icon-playlist" l-class="iconfont icon-playlist theme-font-color-a"></l-icon>
+	</view>
+</view>
