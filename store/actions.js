@@ -49,9 +49,8 @@ export const selectPlay = async function ({
 
 }
 
-export const randomPlay = async function ({
-  list
-}) {
+export const randomPlay = async function () {
+  let list = state.playlist
   mutations(types.SET_PLAY_MODE, playMode.random) //更改播放的模式
   mutations(types.SET_SEQUENCE_LIST, list) //设置循环的播放列表
   let randomList = shuffle(list)

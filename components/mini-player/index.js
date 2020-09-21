@@ -23,7 +23,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    fullScreen: false
+    fullScreen: false,
+    currentIndex: -1
   },
 
   pageLifetimes: {
@@ -59,6 +60,10 @@ Component({
         playing,
         currentIndex
       })
+      if(res.currentIndex === -1) {
+        audio.pause()
+        return
+      }
       this.OberservePer()
     },
     OberservePer() {

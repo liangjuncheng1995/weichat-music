@@ -82,12 +82,10 @@ Component({
     },
 
     random() {
-      // randomPlay({
-      //   list: this.properties.songs
-      // })
-      // wx.navigateTo({
-      //   url: `/pages/player/index`,
-      // })
+      randomPlay()
+      wx.navigateTo({
+        url: `/pages/player/index`,
+      })
     }, 
 
     _combinaParam(songs, index) {

@@ -534,6 +534,7 @@ Page({
       wx.showToast({
         title: '该歌曲的播放链接已经失效',
       })
+      deleteSongList()
       wx.navigateBack()
     }
   },
