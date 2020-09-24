@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    percent: 0
+    percent: 0,
+    text: "播 放"
   },
 
   /**

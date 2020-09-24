@@ -1,4 +1,4 @@
-<button bindtap="playMusic">播放</button>
+<button bindtap="playMusic">{{text}}</button>
 <view>
     {{time}}
 </view>

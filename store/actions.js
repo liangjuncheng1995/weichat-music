@@ -23,6 +23,24 @@ function findIndex(list, song) {
   })
 }
 
+export const checkoutAudioUrl = async function (index) {
+  let playlist = state.playlist.slice()
+  let sequenceList = state.sequenceList.slice()
+
+  if (!playlist[index].url) {
+    const data = await Song.getPlayUrl(playlist[index].mid)
+    playlist[index].url = data.url_mid.data.midurlinfo[0].purl
+  }
+  if (!sequenceList[index].url) {
+    const data = await Song.getPlayUrl(sequenceList[index].mid)
+    sequenceList[index].url = data.url_mid.data.midurlinfo[0].purl
+  }
+
+  mutations(types.SET_PLAYLIST, playlist)
+  mutations(types.SET_SEQUENCE_LIST, sequenceList)
+
+}
+
 
 export const selectPlay = async function ({
   index
@@ -71,7 +89,7 @@ export const selectPrev = async function ({
   list,
   index
 }) {
-  if(!list[index].url) {
+  if (!list[index].url) {
     const data = await Song.getPlayUrl(list[index].mid)
     list[index].url = data.url_mid.data.midurlinfo[0].purl
     mutations(types.SET_PLAYLIST, list)
@@ -81,12 +99,58 @@ export const selectPrev = async function ({
   // mutations(types.SET_FULL_SCREEN, true)
   // mutations(types.SET_PLAYING_STATE, true)
 
-  
+
 }
 
-export const deleteSongList = function() {
+export const deleteSongList = function () {
   mutations(types.SET_PLAYLIST, [])
   mutations(types.SET_SEQUENCE_LIST, [])
   mutations(types.SET_CURRENT_INDEX, -1)
+  mutations(types.SET_PLAY_ID, '')
   mutations(types.SET_PLAYING_STATE, false)
+}
+
+export const resetSongList = function () {
+  console.log("reset")
+  mutations(types.SET_PLAYLIST, [])
+  mutations(types.SET_SEQUENCE_LIST, [])
+  mutations(types.SET_CURRENT_INDEX, -1)
+  mutations(types.SET_PLAY_ID, '')
+  mutations(types.SET_PLAYING_STATE, false)
+}
+
+export const deleteSong = async function (song) {
+  let playlist = state.playlist.slice()
+  let sequenceList = state.sequenceList.slice()
+  let currentIndex = state.currentIndex
+
+  let pIndex = findIndex(playlist, song)
+  playlist.splice(pIndex, 1) //删除点击的一首歌曲
+  let sIndex = findIndex(sequenceList, song)
+  sequenceList.splice(sIndex, 1) //删除点击的一首歌曲
+
+
+  if (currentIndex > pIndex || currentIndex === playlist.length) { //当前的索引 在 要删除歌曲的下面  或者当前的歌曲在最后一首
+    currentIndex--
+  }
+
+  if (!playlist[currentIndex].url) { //处理没有url的地址
+    const data = await Song.getPlayUrl(playlist[currentIndex].mid)
+    playlist[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
+  }
+  if (!sequenceList[currentIndex].url) { //处理没有url的地址
+    const data = await Song.getPlayUrl(sequenceList[currentIndex].mid)
+    sequenceList[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
+  }
+
+  mutations(types.SET_PLAYLIST, playlist)
+  mutations(types.SET_SEQUENCE_LIST, sequenceList)
+  mutations(types.SET_CURRENT_INDEX, currentIndex)
+
+  if(!playlist.length) {//如果删除了最后一首
+    mutations(types.SET_PLAYING_STATE, false)
+  } else {
+    mutations(types.SET_PLAYING_STATE, true)
+  }
+
 }

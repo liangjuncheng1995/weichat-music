@@ -1,6 +1,10 @@
 import {
   selectPlay, randomPlay
 } from "../../store/actions"
+import {
+  mutations
+} from "../../store/mutations"
+import { state } from "../../store/state"
 const app = getApp()
 
 // components/music-list/index.js
@@ -39,6 +43,12 @@ Component({
     }
   },
 
+  pageLifetimes: {
+    show() {
+      this.watchData()
+    }
+  },
+
   lifetimes: {
     attached() {
 
@@ -55,7 +65,8 @@ Component({
     top: 0,
     type: "loading",
     show: true,
-    translateY: 0
+    translateY: 0,
+    bottom: 0
   },
 
 
@@ -63,9 +74,37 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    watchData() {
+      console.log("music-list监听启动：")
+      if(state.playlist.length > 0) {
+        this.setData({
+          bottom: 120
+        })
+      } else {
+        this.setData({
+          bottom: 0
+        })
+      }
+      app.watchPlayList(mutations, "playlist", Finish)
+      let self = this
+      function Finish(playlist) {
+        console.log("music-list播放列表的监听")
+        if(playlist.length > 0) {
+          self.setData({
+            bottom: 120
+          })
+        } else {
+          self.setData({
+            bottom: 0
+          })
+        }
+      }
+    },
     async selectItem(e) {
       console.log(this.properties.songs)
+
+      //父组件进行设置播放的列表
+      this.triggerEvent("setPlayList")
       await selectPlay({
         index: e.detail.index
       })
@@ -81,8 +120,10 @@ Component({
       })
     },
 
-    random() {
-      randomPlay()
+    async random() {
+      //父组件进行设置播放的列表
+      this.triggerEvent("setPlayList")
+      await randomPlay()
       wx.navigateTo({
         url: `/pages/player/index`,
       })
@@ -126,6 +167,9 @@ Component({
     },
     _scrollY() {
       let newY = this.data.scrollY
+      if(newY > 0) {
+        return
+      }
       let translateY = Math.max(this.data.minTranslateY, newY)
       let zIndex = 0
       let scale = 1

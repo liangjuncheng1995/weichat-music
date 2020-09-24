@@ -1,4 +1,5 @@
 <view id="app">
 	<m-header></m-header>
   <tab></tab>
+  <m-mini-player></m-mini-player>
 </view>

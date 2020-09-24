@@ -13,7 +13,13 @@
 			<l-icon catchtap="togglePlaying" size="80" name="{{player.playMiniIcon(playing,'play')}}" l-class="playMiniIcon {{player.playMiniIcon(playing)}}"></l-icon>
 		</l-circle>
 	</view>
-	<view class="control-playlist">
+	<view class="control-playlist" catchtap="showPlaylist">
 		<l-icon size="60" name="icon-playlist" l-class="iconfont icon-playlist theme-font-color-a"></l-icon>
 	</view>
+
 </view>
+
+<play-list id="playlist" bind:loadData="loadData"></play-list>
+
+
+

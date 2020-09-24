@@ -7,6 +7,7 @@ import {
 import {
   mutations
 } from "./store/mutations"
+import { types } from "./store/mutation-types.js"
 
 
 App({
@@ -23,21 +24,49 @@ App({
     data: state
   },
   
-  watch: function(method) {
-    var obj = this.globalData
-    Object.defineProperty(obj, 'data', {
+  watchPlayId: function(method, playId, callback) {
+    let obj = state
+    Object.defineProperty(obj, playId, {
       configurable: true,
       enumerable: true,
       set: function(value) {
-        this.data = value.data
-        method(value) 
+        this._playId = value
+        callback(value)
       },
-      get: function() {
-        return this.globalData
+      get: function(value) {
+        return this._playId
+      }
+    })
+  },
+
+  watchCurrentIndex: function(method, currentIndex, callback) {
+    let obj = state
+    Object.defineProperty(obj, currentIndex, {
+      configurable: true,
+      enumerable: true,
+      set: function(value) {
+        this._currentIndex = value
+        callback(value)
+      },
+      get: function(value) {
+        return this._currentIndex
+      }
+    })
+  },
+
+  watchPlayList: function(method, playlist, callback) {
+    let obj = state
+    Object.defineProperty(obj, playlist, {
+      configurable: true,
+      enumerable: true,
+      set: function(value) {
+        this._playlist = value
+        callback(value)
+      },
+      get: function(value) {
+        return this._playlist
       }
     })
   }
-
-
   
 })

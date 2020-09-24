@@ -25,7 +25,7 @@
 			</view>
 
 
-			<view class="middle-r" style="transition-duration:{{transitionDurationLyricList}};transform:translate3d({{offsetWidth*2}}rpx,0,0)">
+			<view class="middle-r" style="transition-duration:{{transitionDurationLyricList}};transform:translate3d({{offsetWidth}}px,0,0)">
 				<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y style="height:{{scrollHeight}}rpx">
 					<view class="lyric-container">
 						<view wx:if="{{currentLyric}}">

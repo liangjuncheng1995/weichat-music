@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "l-circle": "/miniprogram_npm/lin-ui/circle/index",
-    "v-circle": "/miniprogram_npm/@vant/weapp/circle/index"
+    "v-circle": "/miniprogram_npm/@vant/weapp/circle/index",
+    "play-list": "/components/playlist/index"
   }
 }

@@ -22,6 +22,11 @@
   color:#09bffb !important; 
 }
 
+.currentSongText {
+  color: #09bffb !important;
+}
+
+
 
 .theme-font-family {
   font-family: tahoma, arial, Hiragino Sans GB, 微软雅黑, simsun, sans-serif;
@@ -99,6 +104,27 @@
   content: "\e639";
   color: #5ecaee !important;
 }
+
+.l-icon-icon-clear:before {
+  content: "\e62e";
+}
+
+.l-icon-icon-add:before {
+  content: "\e651";
+}
+
+.l-icon-icon-favoriteoutline:before {
+  content: "\e627";
+}
+
+.l-icon-icon-clear-num:before {
+  content: "\e638";
+}
+
+
+
+
+
 
 
 

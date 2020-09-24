@@ -89,6 +89,12 @@
 }
 
 
+/* 弹出层的样式 */
+.dialog-content {
+  text-align: center !important;
+}
+
+
 
 /* cd旋转的动画 */
 .play {

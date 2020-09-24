@@ -1,4 +1,3 @@
-
 var playMode = {
   sequence: 0,
   loop: 1,
@@ -7,15 +6,16 @@ var playMode = {
 
 
 function cdCls(playing) {
-  return  playing ? "cd play" : "cd play pause"
+  return playing ? "cd play" : "cd play pause"
 }
 
 function format(interval) {
   interval = interval | 0
   var minute = (interval / 60) | 0
   var seconds = _pad(interval % 60)
-  return minute + ":" + seconds 
+  return minute + ":" + seconds
 }
+
 function _pad(num, n = 2) {
   var len = num.toString().length;
   while (len < n) {
@@ -26,19 +26,35 @@ function _pad(num, n = 2) {
 }
 
 function playIcon(playing, name) {
-  if(name === "play") {
+  if (name === "play") {
     return playing ? "icon-time-out" : "icon-play"
   } else {
     return playing ? "iconfont icon-time-out" : "iconfont icon-play"
   }
 }
 
- 
+
 function playMiniIcon(playing, name) {
-  if(name === "play") {
+  if (name === "play") {
     return playing ? "icon-mini-pause" : "icon-mini-play"
   } else {
     return playing ? "iconfont icon-mini-pause" : "iconfont icon-mini-play"
+  }
+}
+
+function getCurrentIcon(currentSongId, item) {
+  if(currentSongId === item.id) {
+    return "icon-play"
+  } else {
+    return "none"
+  }
+} 
+
+function getCurrentText(currentSongId, item) {
+  if(currentSongId === item.id) {
+    return "currentSongText"
+  } else {
+    return ""
   }
 }
 
@@ -48,14 +64,18 @@ function disableCls(songReady) {
 }
 
 function iconMode(mode) {
-  return mode ===playMode.sequence ? 'icon-sequence-play' : mode === playMode.loop ? 'icon-loop' : 'icon-random'
+  return mode === playMode.sequence ? 'icon-sequence-play' : mode === playMode.loop ? 'icon-loop' : 'icon-random'
+}
+
+function modeText(mode) {
+  return mode === playMode.sequence ? '顺序播放' : mode === playMode.random ? '随机播放' : '单曲循环'
 }
 
 function activeColor() {
   return "#00a1d6"
 }
 
-function backgroundColor () {
+function backgroundColor() {
   return "#5ecaee"
 
 }
@@ -67,6 +87,9 @@ module.exports = {
   playIcon: playIcon,
   disableCls: disableCls,
   iconMode: iconMode,
+  getCurrentIcon: getCurrentIcon,
+  getCurrentText: getCurrentText,
+  modeText: modeText,
   activeColor: activeColor,
   backgroundColor: backgroundColor,
   playMiniIcon: playMiniIcon

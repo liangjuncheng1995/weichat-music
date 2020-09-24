@@ -17,7 +17,8 @@ Page({
   data: {
     songs: [],
     title: '',
-    bgImage: ''
+    bgImage: '',
+    bottom: 0
   },
 
   /**
@@ -29,9 +30,9 @@ Page({
   },
 
   onShow() {
-    if(this.data.songs.length > 0) { //数据重新入库
-      mutations(types.SET_PLAYLIST, this.data.songs)
-    }
+    // if(this.data.songs.length > 0) { //数据重新入库
+    //   mutations(types.SET_PLAYLIST, this.data.songs)
+    // }
   },
 
   setTitleImage(options) {
@@ -46,7 +47,14 @@ Page({
     this.setData({
       songs: this._normalizeSongs(result.cdlist[0].songlist)
     })
-    mutations(types.SET_PLAYLIST, this.data.songs)//保存数据到仓库
+    // mutations(types.SET_PLAYLIST, this.data.songs)//保存数据到仓库
+  },
+
+  setPlayList() {
+    console.log("开始设置仓库的数据")
+    if(this.data.songs.length > 0) {
+      mutations(types.SET_PLAYLIST, this.data.songs)//保存数据到仓库
+    }
   },
 
   _normalizeSongs(list) {
@@ -57,7 +65,12 @@ Page({
       }
     })
     return ret
-  }
-
+  },
+  getBottom(e) {
+    console.log(e)
+    this.setData({
+      bottom: e.detail
+    })
+  } 
 
 })

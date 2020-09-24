@@ -1,5 +1,7 @@
 <view class="music-list">
-	<view class="title">{{title}}</view>
+	<view class="title">
+		<text>{{title}}</text>
+	</view>
 	<view id="container" class="bg-image" style="background-image:url({{bgImage}})">
 		<view class="play-container">
 			<view class="play theme-border-color-1 theme-font-color" wx:if="{{songs.length > 0}}" bind:tap="random">
@@ -12,7 +14,7 @@
 
 	<view class="bg-layer" style="transform:translate3d(0,{{translateY}}rpx,0)"></view>
 
-	<scroll-view  bindscroll="scroll" class="list" scroll-y style="top: {{top}}rpx">
+	<scroll-view bindscroll="scroll" class="list" scroll-y style="top:{{top}}rpx;bottom:{{bottom}}rpx">
 		<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
 			<view class="song-list-container" slot="content">
 				<song-list songs="{{songs}}" bind:select="selectItem"></song-list>

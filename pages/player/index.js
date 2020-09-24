@@ -13,7 +13,8 @@ import {
 import {
   selectPrev,
   selectPlay,
-  deleteSongList
+  deleteSongList,
+  resetSongList
 } from "../../store/actions"
 import {
   playMode
@@ -108,6 +109,11 @@ Page({
       this.setData({
         showDialog: true
       })
+      if(!this.data.fullScreen) {
+        resetSongList()
+        return
+      }
+      deleteSongList()
       return
     }
 
@@ -142,11 +148,11 @@ Page({
 
 
     audio.onPlay((res) => {
-      console.log("onPlay")
+      console.log("onPlay-normal")
       this.setPlay()
     })
     audio.onPause(() => {
-      console.log("onPause")
+      console.log("onPause-normal")
       this.setPause()
     })
     audio.onEnded(() => {
@@ -163,6 +169,8 @@ Page({
       this.setData({
         DeleteSystemMusic: true
       })
+      mutations(types.SET_PLAY_ID, "")
+      mutations(types.SET_FULL_SCREEN, true)
       this.setPause()
     })
     audio.onWaiting(() => {
@@ -407,6 +415,7 @@ Page({
         opacity = 0;
       }
     }
+    
     this.setData({
       transitionDurationMiddleL: `300ms`,
       transitionDurationLyricList: `300ms`,

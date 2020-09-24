@@ -1,0 +1,170 @@
+@import '../../app.wxss';
+
+.playlist {}
+
+.list-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.list-header {
+  position: relative;
+  padding: 40rpx 60rpx 20rpx 40rpx;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.icon1 {
+  margin-right: 20rpx !important;
+  font-size: 60rpx !important;
+  /* color: $theme-color; */
+}
+
+.list-header .title .text {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.list-header .title .clear {
+  position: relative;
+}
+
+.list-header .title .clear::before {
+  content: "";
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  right: -20rpx;
+  bottom: -20rpx;
+}
+
+.icon-clear {
+  font-size: 28rpx !important;
+  /* color: $theme-color; */
+}
+
+
+.list-content {
+  max-height: 480rpx;
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 60rpx 0 40rpx;
+  overflow: hidden;
+}
+
+.current {
+  flex: 0 0 40rpx !important;
+  width: 40rpx !important;
+  font-size: 24rpx !important;
+  /* color: $theme-color-bold; */
+}
+
+.currentSongText {
+  /* color: $theme-color-bold; */
+}
+
+.list-content .ul .item .text {
+  flex: 1;
+  /* @include ellipseOne; */
+  font-size: 28rpx;
+}
+
+.like,
+.icon-favoriteoutline {
+  position: relative !important;
+  margin-right: 30rpx !important;
+  font-size: 30rpx !important;
+  color: rgb(251, 114, 153) !important;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+
+}
+
+.like::before {
+  content: '';
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  right: -20rpx;
+  bottom: -20rpx;
+}
+
+.icon-favoriteline {
+  color: #d93f30;
+}
+
+.delete,
+.icon-clear-num {
+  position: relative !important;
+  font-size: 30rpx !important;
+
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+
+
+  /* color: $theme-color; */
+}
+
+.delete::before {
+  content: "";
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  right: -20rpx;
+  bottom: -20rpx;
+}
+
+
+.list-operate {
+  width: 280rpx;
+  margin: 40rpx auto 60rpx auto;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  padding: 16rpx 32rpx;
+  /* border: 1px solid $theme-color; */
+  border-radius: 200rpx;
+  /* color: $theme-color; */
+}
+
+.icon-add {
+  margin-right: 10rpx !important;
+  font-size: 20rpx !important;
+  margin-top: 6rpx !important;
+}
+
+.list-operate .add .text {
+  font-size: 24rpx;
+  /* color: $theme-color; */
+}
+
+.list-close {
+  text-align: center;
+  line-height: 100rpx;
+  background: #222;
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* 弹出层的样式 */
+.dialog-content {
+  text-align: center !important;
+}

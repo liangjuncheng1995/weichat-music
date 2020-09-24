@@ -1,4 +1,4 @@
-<music-list title="{{title}}" bgImage="{{bgImage}}" songs="{{songs}}"></music-list>
+<music-list bind:setPlayList="setPlayList" title="{{title}}" bgImage="{{bgImage}}" songs="{{songs}}"></music-list>
 
 <m-mini-player></m-mini-player>
 

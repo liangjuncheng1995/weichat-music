@@ -1,0 +1,62 @@
+<wxs src="../../wxs/player.wxs" module="player"></wxs>
+
+<l-popup show="{{show}}" content-align="bottom">
+	<view class="playlist">
+		<view class="list-container">
+			<view class="list-header">
+				<view class="title">
+					<l-icon bindtap="changeMode" name="{{player.iconMode(mode)}}" l-class="theme-font-color icon1 iconfont {{player.iconMode(mode)}}"></l-icon>
+					<text class="text">{{player.modeText(mode)}}</text>
+					<view class="clear" bindtap="showConfirm">
+						<l-icon name="icon-clear" l-class="iconfont icon-clear theme-font-color"></l-icon>
+					</view>
+				</view>
+			</view>
+
+			<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y style="height:480rpx" scroll-y class="list-content">
+				<view class="ul">
+					<view class="item" wx:key="index" wx:for="{{sequenceList}}" bindtap="selectItem" data-item="{{item}}" data-index="{{index}}">
+						<l-icon name="{{player.getCurrentIcon(currentSong.id,item)}}" l-class="current iconfont {{player.getCurrentIcon(currentSong.id,item)}}"></l-icon>
+						<text class="text ellipseOne {{player.getCurrentText(currentSong.id,item)}}">{{item.name}}</text>
+						<view class="like">
+							<l-icon name="icon-favoriteoutline" l-class="iconfont icon-favoriteoutline"></l-icon>
+						</view>
+						<view class="delete theme-font-color" data-item="{{item}}" catchtap="deleteOne">
+							<l-icon name="icon-clear-num" l-class=" iconfont icon-clear-num"></l-icon>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+
+			<view class="list-operate">
+				<view class="add theme-border-color-1">
+					<l-icon name="icon-add" l-class="iconfont icon-add theme-font-color "></l-icon>
+					<text class="text theme-font-color">添加歌曲列表</text>
+				</view>
+			</view>
+
+			<view bindtap="hide" class="list-close">
+				<text>关闭</text>
+			</view>
+		</view>
+	</view>
+</l-popup>
+
+<v-toast id="van-toast" />
+
+
+<l-dialog 
+	show="{{showDialog}}"
+	type="confirm"
+	show-title="{{false}}"
+	content="是否清空播放列表"
+	bind:linconfirm="confirm"
+	bind:lincancel="cancel"
+	l-cancel-class=""
+	l-confirm-class="confirm theme-font-color"
+	l-content-class="dialog-content"
+/>
+
+
+
+
