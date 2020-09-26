@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-view": "/components/list-view/index"
+  }
+}

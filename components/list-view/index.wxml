@@ -1,0 +1,35 @@
+<wxs src="../../wxs/singer.wxs" module="singer"></wxs>
+
+<scroll-view scroll-y scroll-with-animation="{{true}}" scroll-top="{{scrollTop}}" bindscroll="scroll" class="listview" style="height:{{contentHeight}}rpx">
+	<l-loadmore show="{{show}}">
+		<view slot="content">
+			<view>
+				<view wx:for="{{data}}" wx:key="index" class="list-group list-group-{{index}}">
+					<view class="list-group-title theme-background">{{item.title}}</view>
+					<view>
+						<view class="list-group-item" data-item="{{item}}" bindtap="selectItem" wx:key="index" wx:for="{{item.items}}">
+							<view class="img-container">
+								<l-image-loader class="avatar" mode="aspectFill" webp style="width:100rpx;height:100rpx;" placeholder="{{placeholderURL}}" src="{{item.avatar}}"> </l-image-loader>
+							</view>
+							<text class="name">{{item.name}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view wx:if="{{singer.fixedTitle(scrollY,data,currentIndex)}}" class="list-fixed" style="transform:translate3d(0px, {{fixedTop}}px, 0px);">
+				<view class="fixed-title theme-background">{{singer.fixedTitle(scrollY,data,currentIndex)}}</view>
+			</view>
+		</view>
+	</l-loadmore>
+
+</scroll-view>
+
+
+<view wx:if="{{shortcutList.length > 0}}" class="list-shortcut" bindtouchstart="onShortcutTouchStart" catchtouchmove="onShortcutTouchMove">
+	<view>
+		<view data-index="{{index}}" class="item {{currentIndex === index?'current':''}}" wx:for="{{shortcutList}}" wx:key="index">
+			{{item}}
+		</view>
+	</view>
+</view>

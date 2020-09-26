@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "l-image-loader": "/components/l-image-loader/index"
+  }
+}

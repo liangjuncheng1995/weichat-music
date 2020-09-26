@@ -2,8 +2,12 @@
 import {
   px2rpx
 } from "../../miniprogram_npm/lin-ui/utils/util"
-import { state } from "../../store/state"
-import { mutations } from "../../store/mutations"
+import {
+  state
+} from "../../store/state"
+import {
+  mutations
+} from "../../store/mutations"
 const app = getApp()
 Component({
   /**
@@ -17,7 +21,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    contentHeight: 0
+    contentHeight: 0,
+    singerActivity: false
   },
   pageLifetimes: {
     show() {
@@ -39,6 +44,7 @@ Component({
       console.log("tab组件的监听：")
       app.watchPlayList(mutations, 'playlist', Finish)
       let self = this
+
       function Finish(playlist) {
         self.getScrollViewHeight()
       }
@@ -54,10 +60,20 @@ Component({
     },
     getMiniPlayHeight() {
       const playlist = state.playlist ? state.playlist : []
-      if(playlist.length > 0) {
+      if (playlist.length > 0) {
         return 120
       }
       return 0
+    },
+    changeTabs(e) {
+      const item = e.detail.activeKey
+      switch (item) {
+        case "singer":
+          this.setData({
+            singerActivity: true
+          })
+          break;
+      }
     }
   }
 })

@@ -5,8 +5,8 @@
 		<image src="{{currentSong.image}}" class="circle-img {{player.cdCls(playing)}}"></image>
 	</view>
 	<view class="text">
-		<view class="name">{{currentSong.name}}</view>
-		<view class="desc">{{currentSong.singer}}</view>
+		<view class="name ellipseOne">{{currentSong.name}}</view>
+		<view class="desc ellipseOne">{{currentSong.singer}}</view>
 	</view>
 	<view class="control">
 		<l-circle inner-color="#333" active-color="{{player.activeColor()}}" background-color="{{player.backgroundColor()}}" outer-diameter="60" inner-diameter="48" l-class="cku" percent="{{percent*100}}">

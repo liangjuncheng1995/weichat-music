@@ -6,7 +6,8 @@
     "pages/webView/webView",
     "pages/recommend-detail/index",
     "pages/player/index",
-    "pages/test/index"
+    "pages/test/index",
+    "pages/singer-detail/index"
   ],
   "requiredBackgroundModes": [
     "audio",

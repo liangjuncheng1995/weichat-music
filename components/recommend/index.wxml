@@ -17,7 +17,7 @@
 					<view class="recommend-list">
 						<view class="list-title theme-font-color">热门歌单推荐</view>
 						<view>
-							<view class="item" wx:for="{{discList}}" :key="index" bindtap="selectItem" data-item="{{item}}">
+							<view class="item" wx:for="{{discList}}" wx:key="index" bindtap="selectItem" data-item="{{item}}">
 								<view class="icon">
 									<!-- <image src="{{item.imgurl}}"></image> -->
 									<l-image-loader mode="aspectFill" webp style="width:120rpx;height:120rpx;" placeholder="{{placeholderURL}}" src="{{item.imgurl}}"> </l-image-loader>

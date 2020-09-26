@@ -1,0 +1,3 @@
+<view class="singer">
+  <list-view data="{{singers}}" bind:select="selectSinger" show="{{show}}" contentHeight="{{contentHeight}}"></list-view>
+</view>

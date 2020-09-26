@@ -1,0 +1,92 @@
+@import '../../app.wxss';
+
+.listview {
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+
+.list-group-title {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 40rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+  /* background: $theme-color; */
+}
+
+.list-group {
+  padding-bottom: 60rpx;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 0 0 60rpx;
+}
+
+.list-group-item .avatar {
+  width: 100rpx !important;
+  height: 100rpx !important;
+  border-radius: 50% !important;
+}
+
+.img-container image {
+  width: 100rpx !important;
+  height: 100rpx !important;
+  border-radius: 50% !important;
+}
+
+.img-container .avatar view {
+  width: 100rpx !important;
+  height: 100rpx !important;
+}
+
+.list-group-item .name {
+  margin-left: 40rpx;
+  font-size: 28rpx;
+}
+
+
+.list-shortcut {
+  position: fixed;
+  z-index: 2000;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40rpx;
+  padding: 40rpx 0;
+  border-radius: 20rpx;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: Helvetica;
+}
+
+.list-shortcut .item {
+  padding: 6rpx;
+  line-height: 1;
+  color: rgba(255, 255, 255, 1);
+  font-size: 24rpx;
+}
+
+.list-shortcut .current {
+  /* color: $theme-color; */
+}
+
+
+.list-fixed {
+  position: fixed;
+  top: 0rpx;
+  left: 0;
+  width: 100%;
+  z-index: 1111;
+}
+
+.fixed-title {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 40rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255);
+  /* background: $theme-color; */
+}

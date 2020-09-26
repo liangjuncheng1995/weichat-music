@@ -10,17 +10,18 @@
     l-header-class="header-line"
     equal-width="{{true}}"
     content-height="{{contentHeight}}"
+    bind:linchange="changeTabs"
   >
-    <l-tabpanel tab="推荐" key="one" slot="one">
+    <l-tabpanel tab="推荐" key="recommend" slot="recommend">
       <m-recommend contentHeight="{{contentHeight}}"></m-recommend>
     </l-tabpanel>
-    <l-tabpanel tab="歌手" key="two" slot="two">
-      <view>歌手模块</view>
+    <l-tabpanel tab="歌手" key="singer" slot="singer">
+      <m-singer activity="{{singerActivity}}" contentHeight="{{contentHeight}}"></m-singer>
     </l-tabpanel>
-    <l-tabpanel tab="热门" key="three" slot="three">
-      <view>热门模块</view>
+    <l-tabpanel tab="排行" key="rank" slot="rank">
+      <view></view>
     </l-tabpanel>
-    <l-tabpanel tab="搜索" key="four" slot="four">
+    <l-tabpanel tab="搜索" key="search" slot="search">
       <view>搜索模块</view>
     </l-tabpanel>
   </l-tabs>

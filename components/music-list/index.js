@@ -76,7 +76,8 @@ Component({
   methods: {
     watchData() {
       console.log("music-list监听启动：")
-      if(state.playlist.length > 0) {
+      console.log(state.playlist)
+      if(state.playlist && state.playlist.length > 0) {
         this.setData({
           bottom: 120
         })
