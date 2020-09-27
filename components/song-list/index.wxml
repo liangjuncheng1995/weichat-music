@@ -1,23 +1,39 @@
 <view class="song-list">
-  <view>
-    <view data-item="{{item}}" data-index="{{index}}" bindtap="selectItem" class="item" wx:for="{{songs}}" wx:key="index">
-      <view class="rank" wx:if="{{rank}}">
-        <text></text>
-      </view>
-      <view class="content">
-        <view class="name ellipseOne theme-font-color">{{item.name}}</view>
-        <view class="desc ellipseOne">{{p.getDesc(item)}}</view>
-      </view>
-    </view>
-  </view>
+	<view>
+		<view data-item="{{item}}" data-index="{{index}}" bindtap="selectItem" class="item" wx:for="{{songs}}" wx:key="index">
+			<view class="rank" wx:if="{{rank}}">
+				<text class="{{p.getRankCls(index)}} theme-font-color">{{p.getRankText(index)}}</text>
+			</view>
+			<view class="content">
+				<view class="name ellipseOne theme-font-color">{{item.name}}</view>
+				<view class="desc ellipseOne">{{p.getDesc(item)}}</view>
+			</view>
+		</view>
+	</view>
 </view>
 
 <wxs module="p">
-  var getDesc = function(song) {
-    return song.singer + "·" + song.album
-  }
+	var getDesc = function(song) {
+		return song.singer + "·" + song.album
+	}
 
-  module.exports = {
-    getDesc: getDesc
-  }
+	var getRankCls = function(index) {
+		if (index <= 2) {
+			return "icon icon" + index
+		} else {
+			return "text"
+		}
+	}
+
+	var getRankText = function(index) {
+		if (index > 2) {
+			return index + 1;
+		}
+	}
+
+	module.exports = {
+		getDesc: getDesc,
+		getRankCls: getRankCls,
+    getRankText: getRankText
+	}
 </wxs>

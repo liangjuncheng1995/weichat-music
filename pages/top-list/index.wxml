@@ -1,0 +1,3 @@
+<music-list rank="{{rank}}" bind:setPlayList="setPlayList" title="{{title}}" bgImage="{{bgImage}}" songs="{{songs}}"></music-list>
+
+<m-mini-player></m-mini-player>

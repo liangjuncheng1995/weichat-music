@@ -19,7 +19,7 @@
       <m-singer activity="{{singerActivity}}" contentHeight="{{contentHeight}}"></m-singer>
     </l-tabpanel>
     <l-tabpanel tab="排行" key="rank" slot="rank">
-      <view></view>
+      <m-rank activity="{{rankActivity}}" contentHeight="{{contentHeight}}"></m-rank>
     </l-tabpanel>
     <l-tabpanel tab="搜索" key="search" slot="search">
       <view>搜索模块</view>

@@ -22,7 +22,8 @@ Component({
    */
   data: {
     contentHeight: 0,
-    singerActivity: false
+    singerActivity: false,
+    rankActivity: false
   },
   pageLifetimes: {
     show() {
@@ -71,6 +72,11 @@ Component({
         case "singer":
           this.setData({
             singerActivity: true
+          })
+          break;
+        case "rank":
+          this.setData({
+            rankActivity: true
           })
           break;
       }

@@ -17,7 +17,7 @@
 	<scroll-view bindscroll="scroll" class="list" scroll-y style="top:{{top}}rpx;bottom:{{bottom}}rpx">
 		<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
 			<view class="song-list-container" slot="content">
-				<song-list songs="{{songs}}" bind:select="selectItem"></song-list>
+				<song-list rank="{{rank}}" songs="{{songs}}" bind:select="selectItem"></song-list>
 			</view>
 		</l-loadmore>
 	</scroll-view>

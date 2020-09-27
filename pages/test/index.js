@@ -1,3 +1,6 @@
+const { state } = require("../../store/state");
+const { sum, Sum } = require("./tests");
+
 // pages/test/index.js
 Page({
 
@@ -6,13 +9,29 @@ Page({
    */
   data: {
     percent: 0,
-    text: "播 放"
+    text: "播 放",
+    daat: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const result = new Sum(1,3)
+    console.log(result.sum())
+
+    setTimeout(() => {
+      this.setData({
+        daat: true
+      })
+    },1000)
+    console.log(state)
+    this.setData({
+      state
+    })
+
+    
+
     let bgMusic = wx.getBackgroundAudioManager();
     bgMusic.title = "测试";
     // bgMusic.desc = "描述";

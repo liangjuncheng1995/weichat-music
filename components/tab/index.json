@@ -4,6 +4,7 @@
     "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
     "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index",
     "m-recommend": "/components/recommend/index",
-    "m-singer": "/components/singer/index"
+    "m-singer": "/components/singer/index",
+    "m-rank": "/components/rank/index"
   }
 }
