@@ -1,0 +1,5 @@
+<view class="search-box theme-background-white">
+	<l-icon size="48" color="#222" name="icon-sousuo" l-class="iconfont icon-sousuo"></l-icon>
+	<input bindconfirm="confirm" placeholder-style="color:#999" model:value="{{query}}" placeholder="搜索歌曲、歌手" class="box theme-background-white"></input>
+	<l-icon bindtap="clear" name="icon-delete" l-class="iconfont icon-delete" size="32" color="#222" wx:if="{{query}}"></l-icon>
+</view>

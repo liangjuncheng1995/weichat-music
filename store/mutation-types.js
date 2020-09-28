@@ -7,4 +7,5 @@ export const types = {
   SET_PLAYING_STATE: "SET_PLAYING_STATE", //设置播放的状态
   SET_PLAY_MODE: "SET_PLAY_MODE", //设置列表的播放状态
   SET_PLAY_ID: "SET_PLAY_ID", //设置正在播放的歌曲id
+  SET_SEARCH_HISTORY: "SET_SEARCH_HISTORY", //设置搜索历史的相关数据
 }

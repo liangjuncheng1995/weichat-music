@@ -13,7 +13,7 @@
 				</view>
 			</view>
 
-			<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y style="height:480rpx" scroll-y class="list-content">
+			<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y class="list-content">
 				<view class="ul">
 					<view class="item" wx:key="index" wx:for="{{sequenceList}}" bindtap="selectItem" data-item="{{item}}" data-index="{{index}}">
 						<l-icon name="{{player.getCurrentIcon(currentSong.id,item)}}" l-class="current iconfont {{player.getCurrentIcon(currentSong.id,item)}}"></l-icon>

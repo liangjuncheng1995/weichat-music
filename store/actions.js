@@ -1,5 +1,6 @@
 import {
-  Song
+  Song,
+  createSong
 } from "../model/song"
 import {
   mutations
@@ -16,6 +17,9 @@ import {
 import {
   shuffle
 } from "../utils/utils"
+import {
+  Cache
+} from "../model/cache"
 
 function findIndex(list, song) {
   return list.findIndex((item) => {
@@ -134,11 +138,12 @@ export const deleteSong = async function (song) {
     currentIndex--
   }
 
-  if (!playlist[currentIndex].url) { //处理没有url的地址
+
+  if (playlist.length && !playlist[currentIndex].url) { //处理没有url的地址
     const data = await Song.getPlayUrl(playlist[currentIndex].mid)
     playlist[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
   }
-  if (!sequenceList[currentIndex].url) { //处理没有url的地址
+  if (sequenceList.length && !sequenceList[currentIndex].url) { //处理没有url的地址
     const data = await Song.getPlayUrl(sequenceList[currentIndex].mid)
     sequenceList[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
   }
@@ -147,10 +152,80 @@ export const deleteSong = async function (song) {
   mutations(types.SET_SEQUENCE_LIST, sequenceList)
   mutations(types.SET_CURRENT_INDEX, currentIndex)
 
-  if(!playlist.length) {//如果删除了最后一首
+  if (!playlist.length) { //如果删除了最后一首
     mutations(types.SET_PLAYING_STATE, false)
   } else {
     mutations(types.SET_PLAYING_STATE, true)
   }
 
+}
+
+
+export const insertSong = async function (song) {
+  let newSong = createSong(song)
+  if (state.playlist === undefined) state.playlist = []
+  if (state.currentIndex === undefined) state.currentIndex = -1
+  let playlist = state.playlist.slice()
+  let sequenceList = state.sequenceList.slice()
+  let currentIndex = state.currentIndex
+
+  //记录当前的歌曲
+  let currentSong = playlist[currentIndex]
+  //查找当前列表中是否有待插入的歌曲并返回索引
+  let fpIndex = findIndex(playlist, newSong)
+  //因为插入歌曲，所以索引加一
+  currentIndex++
+  //插入这首歌到当前索引位置
+  playlist.splice(currentIndex, 0, newSong)
+  //如果已经包含这首歌
+  if (fpIndex > -1) {
+    //如果当前播放的序号大于原本列表中的序号
+    if (currentIndex > fpIndex) {
+      playlist.splice(fpIndex, 1) //删除搜索到的歌曲 在原来列表位置的歌曲
+      currentIndex--
+    } else { //如果当前播放的序号小于搜索之后原本列表中的序号
+      playlist.splice(fpIndex + 1, 1) //删除原本列表的一条歌曲，由于fp的索引是有发生了改变的，所以要加 1
+    }
+  }
+
+  let currentSIndex = findIndex(sequenceList, currentSong) + 1
+  let fsIndex = findIndex(sequenceList, newSong)
+  sequenceList.splice(currentSIndex, 0, newSong)
+
+  if (fsIndex > -1) {
+    if (currentSIndex > fsIndex) {
+      sequenceList.splice(fsIndex, 1)
+    } else {
+      sequenceList.splice(fsIndex + 1, 1)
+    }
+  }
+
+  if (!sequenceList[currentIndex].url) { //处理没有url的地址
+    const data = await Song.getPlayUrl(sequenceList[currentIndex].mid)
+    sequenceList[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
+  }
+  if (!playlist[currentIndex].url) { //处理没有url的地址
+    const data = await Song.getPlayUrl(playlist[currentIndex].mid)
+    playlist[currentIndex].url = data.url_mid.data.midurlinfo[0].purl
+  }
+
+  mutations(types.SET_PLAYLIST, playlist)
+  mutations(types.SET_SEQUENCE_LIST, sequenceList)
+  mutations(types.SET_CURRENT_INDEX, currentIndex)
+  mutations(types.SET_FULL_SCREEN, true)
+  mutations(types.SET_PLAYING_STATE, true)
+}
+
+export const saveSearchHistory = function (query) {
+  const result = Cache.saveSearch(query)
+  console.log(result)
+  mutations(types.SET_SEARCH_HISTORY, result)
+}
+
+export const clearSearchHistory = function () {
+  mutations(types.SET_SEARCH_HISTORY, Cache.clearSearch())
+}
+
+export const deleteSearchHistory = function(query) {
+  mutations(types.SET_SEARCH_HISTORY, Cache.deleteSearch(query))
 }

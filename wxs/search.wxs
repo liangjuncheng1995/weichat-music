@@ -1,0 +1,28 @@
+function getIconCls(item) {
+  if(item.type === "singer") {
+    return "icon-user"
+  } else {
+    return "icon-musical-note"
+  }
+}
+
+function getDisplayName(item) {
+  if(item.type === "singer") {
+    return item.singername
+  } else {
+    return item.name + "-" + item.singer
+  }
+}
+
+function checkload(boolean) {
+  if(!boolean) {
+    return "end"
+  }
+  return "loading"
+}
+
+module.exports = {
+  getIconCls: getIconCls,
+  getDisplayName: getDisplayName,
+  checkload: checkload
+}

@@ -1,0 +1,19 @@
+<wxs src="../../wxs/search.wxs" module="search"></wxs>
+
+<scroll-view bindscrolltolower="scroll" style="height:{{contentHeight}}rpx" scroll-y class="suggest">
+	<l-loadmore end-text="{{endtext}}" type="{{search.checkload(hasMore)}}"  show="{{true}}">
+		<view class="suggest-list" slot="content">
+			<view bindtap="selectItem" data-item="{{item}}" hover-class="view-hover" class="hover theme-font-color" wx:key="index" wx:for="{{result}}">
+				<view class="suggest-item">
+					<view class="icon1">
+						<l-icon name="{{search.getIconCls(item)}}" l-class="iconfont {{search.getIconCls(item)}}"></l-icon>
+					</view>
+					<view class="name">
+						<view style="{{item.mid === err_play ? 'color:rgba(51,51,51,0.3)' : ''}}" class="text ellipseOne">{{search.getDisplayName(item)}}</view>
+					</view>
+					<view class="error" wx:if="{{item.mid === err_play}}">暂无播放源</view>
+				</view>
+			</view>
+		</view>
+	</l-loadmore>
+</scroll-view>

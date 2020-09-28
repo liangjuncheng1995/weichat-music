@@ -33,6 +33,9 @@
 								{{item.txt}}
 							</view>
 						</view>
+						<view wx:else>
+							<view class="notext current">暂无歌词</view>
+						</view>
 					</view>
 				</scroll-view>
 			</view>

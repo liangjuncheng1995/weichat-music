@@ -14,12 +14,22 @@
   border: 1px solid #00a1d6 !important;
 }
 
+.theme-background-color {
+  background-color:  #f2f2f2;
+}
+
+.theme-background-white {
+  background-color: #ffffff;
+}
+
+
+
 .disable view {
   color: rgba(0, 161, 214, 0.3) !important;
 }
 
 .current {
-  color:#09bffb !important; 
+  color: #09bffb !important;
 }
 
 .currentSongText {
@@ -121,12 +131,18 @@
   content: "\e638";
 }
 
+.l-icon-icon-sousuo:before {
+  content: "\e653";
+}
 
+.l-icon-icon-delete:before {
+  content: "\e613";
+}
 
+.l-icon-icon-user:before {
+  content: "\e66e";
+}
 
-
-
-
-
-
-
+.l-icon-icon-musical-note:before {
+  content: "\e630";
+}

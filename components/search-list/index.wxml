@@ -1,0 +1,8 @@
+<view class="search-list" wx:if="{{searches.length}}">
+  <view class="search-item" wx:for="{{searches}}" data-item="{{item}}" bindtap="selectItem">
+    <text class="text">{{item}}</text>
+    <view class="icon1" data-item="{{item}}" catchtap="deleteOne">
+      <l-icon name="icon-clear-num" l-class="iconfont icon-clear-num"></l-icon>
+    </view>
+  </view>
+</view>

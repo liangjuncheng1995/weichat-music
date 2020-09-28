@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: "http://192.168.1.40:6001/recordApi"
+  apiBaseUrl: "http://192.168.1.40:8080/recordApi"
 }
 
 const options = {

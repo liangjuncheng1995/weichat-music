@@ -293,10 +293,11 @@ Page({
 
   async getLyric() {
     const resultLyric = await this.data.currentSong.getLyric()
-    if (resultLyric != 'no lyric') {
+    if (resultLyric != 'no lyric' && resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") === -1) {
       this.setData({
         currentLyric: new Lyric(resultLyric, this.handleLyric)
       })
+      console.log(this.data.currentLyric)
       if (state.playId !== this.data.currentSong.id) {
         this.data.currentLyric.play()
       } else { //点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
@@ -313,6 +314,12 @@ Page({
           percent
         })
       }
+    } else if(resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") > -1) {
+      this.setData({
+        playingLyric: "此歌曲为没有填词的纯音乐，请您欣赏",
+        currentLyric: null
+      })
+      this
     } else {
       this.setData({
         currentLyric: null,

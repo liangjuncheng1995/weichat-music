@@ -31,6 +31,10 @@ export function mutations(type, data) {
       break;
     case types.SET_PLAY_ID: 
       set_play_id(data)
+      break;
+    case types.SET_SEARCH_HISTORY: 
+      set_search_history(data)
+      break;
   }
 
 }
@@ -66,3 +70,7 @@ function set_play_mode(mode) { //设置播放列表的播放模式
 function set_play_id(id) { //设置正在播放的歌曲的id
   state.playId = id
 }
+
+function set_search_history(history) { //设置搜索历史的相关数据
+  state.searchHistory = history
+}  

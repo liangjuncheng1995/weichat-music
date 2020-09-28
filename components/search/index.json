@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "search-box": "/components/search-box/index",
+    "suggest": "/components/suggest/index",
+    "search-list": "/components/search-list/index"
+  }
+}

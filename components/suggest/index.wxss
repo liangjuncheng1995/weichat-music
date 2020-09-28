@@ -1,0 +1,42 @@
+@import '../../app.wxss';
+
+.suggest {
+  height: 100%;
+  overflow: hidden;
+}
+.suggest-list .hover{
+  padding: 0 60rpx;
+  
+}
+.view-hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.suggest-item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+}
+
+.suggest-item .name {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+  overflow: hidden;
+}
+
+.suggest-item .name .text {
+  height: 44rpx;
+  line-height: 40rpx;
+}
+
+.suggest-item .error {
+  font-size: 28rpx;
+  color: rgba(51, 51, 51, 0.3);
+}
+
+.suggest-item .icon1 {
+  flex: 0 0 60rpx;
+  width: 60rpx;
+}

@@ -124,6 +124,11 @@
   color: rgba(255, 255, 255, 0.5);
   font-size: 28rpx;
 }
+.middle-r .lyric-container .notext {
+  line-height: 64rpx;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28rpx;
+}
 
 
 /* 导航标点 */

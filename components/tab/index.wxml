@@ -22,7 +22,7 @@
       <m-rank activity="{{rankActivity}}" contentHeight="{{contentHeight}}"></m-rank>
     </l-tabpanel>
     <l-tabpanel tab="搜索" key="search" slot="search">
-      <view>搜索模块</view>
+      <m-search contentHeight="{{contentHeight}}"></m-search>
     </l-tabpanel>
   </l-tabs>
 </view>

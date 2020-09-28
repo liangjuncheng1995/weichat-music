@@ -1,0 +1,50 @@
+<view class="search theme-background-color">
+  <view class="search-box-container">
+    <search-box id="searchBox" bind:query="onQueryChange"></search-box>
+  </view>
+
+  <scroll-view scroll-y style="height:{{contentHeight - searchBoxDomHeight}}rpx" class="shortcut-container" wx:if="{{!query}}">
+    <view class="shortcut">
+
+      <view class="hot-key">
+        <view class="title theme-font-color">热门搜索</view>
+        <view class="item-ul">
+          <view data-item="{{item}}" bindtap="addQuery" wx:for="{{hotKey}}" wx:key="index" class="item theme-background-white">
+            <text>{{item.k}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="search-history" wx:if="{{searchHistory.length}}">
+        <view class="title theme-font-color">
+          <text class="text theme-font-color">搜索历史</text>
+          <view class="clear" bindtap="showConfirm">
+            <l-icon name="icon-clear" l-class="iconfont icon-clear" ></l-icon>          
+          </view>
+        </view>
+        <!-- 搜索历史列表组件 -->
+        <search-list bind:select="addQueryhistory" bind:delete="deleteSearchHistory"  searches="{{searchHistory}}"></search-list>
+      </view>
+
+    </view>
+  </scroll-view>
+
+  <view class="search-result" wx:if="{{query}}">
+    <suggest bind:select="saveSearch" showSinger="{{true}}" contentHeight="{{contentHeight - searchBoxDomHeight}}" query="{{query}}"></suggest>
+  </view>
+  <!-- 弹出层组件 -->
+</view>
+
+
+<l-dialog 
+	show="{{showDialog}}"
+	type="confirm"
+	title="温馨提示"
+	content="是否清空所有搜索历史"
+	bind:linconfirm="confirm"
+	bind:lincancel="cancel"
+	l-cancel-class=""
+	l-confirm-class="confirm theme-font-color"
+	l-content-class="dialog-content"
+/>
+
