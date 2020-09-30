@@ -25,7 +25,11 @@ Component({
       type: Boolean,
       default: true
     },
-    contentHeight: Number
+    contentHeight: Number,
+    AddSong: {
+      type: Boolean,
+      default: false
+    }
   },
 
   observers: {
@@ -153,9 +157,11 @@ Component({
         })
       } else {
         await insertSong(item)
-        wx.navigateTo({
-          url: '/pages/player/index',
-        })
+        if(!this.properties.AddSong) {
+          wx.navigateTo({
+            url: '/pages/player/index',
+          })
+        }
       }
       this.triggerEvent("select")
     }

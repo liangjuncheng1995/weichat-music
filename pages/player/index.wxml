@@ -71,8 +71,8 @@
 				<view bindtap="next" class="icon1 i-left theme-font-color {{player.disableCls(songReady)}}">
 					<l-icon size="60" name="icon-next-song" l-class="iconfont icon-next-song"></l-icon>
 				</view>
-        <view class="icon1 i-left theme-font-color">
-          <l-icon size="60" name="icon-favoriteoutline" l-class="iconfont icon-favoriteoutline"></l-icon>
+        <view class="icon1 i-left theme-font-color" bindtap="toggleFavorite">
+          <l-icon size="60" name="{{player.getFavoriteIcon(currentSong, favoriteList)}}" l-class="iconfont {{player.getFavoriteIcon(currentSong, favoriteList)}}"></l-icon>
         </view>
 			</view>
 		</view>

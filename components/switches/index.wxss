@@ -1,0 +1,22 @@
+@import "../../app.wxss";
+.switches {
+  display: flex;
+  align-items: center;
+  width: 480rpx;
+  margin: 0 auto;
+  /* border: 1px solid */
+  border-radius: 10rpx;
+}
+
+.switches-item {
+  flex: 1;
+  padding: 16rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.active {
+  background: #09bffb;
+  color: #fff;
+}

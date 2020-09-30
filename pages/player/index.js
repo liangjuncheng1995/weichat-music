@@ -14,7 +14,10 @@ import {
   selectPrev,
   selectPlay,
   deleteSongList,
-  resetSongList
+  resetSongList,
+  savePlayHistory,
+  deleteFavoriteList,
+  saveFavoriteList
 } from "../../store/actions"
 import {
   playMode
@@ -91,7 +94,8 @@ Page({
       sequenceList: res.sequenceList,
       fullScreen: res.fullScreen,
       playing: res.playing,
-      mode: res.mode
+      mode: res.mode,
+      favoriteList: res.favoriteList || []
     })
     //采用赋值的方式更改变量会更好
     this.currentIndex = res.currentIndex
@@ -101,6 +105,7 @@ Page({
     this.fullScreen = res.fullScreen
     this.data.playing = res.playing
     this.data.mode = res.mode
+    this.favoriteList = res.favoriteList || []
 
     console.log("播放的状态：")
     console.log(this.data.playing)
@@ -192,6 +197,8 @@ Page({
   setPlayData() {
     audio.src = this.data.currentSong.url
     audio.title = this.data.currentSong.name || this.data.currentSong.singer || "无歌名"
+    //设置播放的历史
+    savePlayHistory(this.data.currentSong)
   },
 
   setPlay() {
@@ -209,7 +216,7 @@ Page({
     mutations(types.SET_PLAYING_STATE, false)
   },
   EndEdSet() {
-    if (this.data.mode === playMode.loop) {
+    if (state.mode === playMode.loop) {
       this.loop()
     } else {
       this.next()
@@ -222,16 +229,16 @@ Page({
       console.log("地址错误，下一首歌曲获取不了");
       return
     }
-
-    if (this.data.playlist.length === 1) {
+    console.log("下一首触发player")
+    if (state.playlist.length === 1) {
       this.loop()
     } else {
-      let index = this.data.currentIndex + 1
-      if (index === this.data.playlist.length) { //最后一首点击下一首的时候
+      let index = state.currentIndex + 1
+      if (index === state.playlist.length) { //最后一首点击下一首的时候
         index = 0
       }
       await selectPrev({
-        list: this.data.playlist,
+        list: state.playlist,
         index: index
       })
       this.loadingData()
@@ -297,7 +304,7 @@ Page({
       this.setData({
         currentLyric: new Lyric(resultLyric, this.handleLyric)
       })
-      console.log(this.data.currentLyric)
+      // console.log(this.data.currentLyric)
       if (state.playId !== this.data.currentSong.id) {
         this.data.currentLyric.play()
       } else { //点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
@@ -521,6 +528,24 @@ Page({
     })
   },
 
+  toggleFavorite() {
+    if(this.isFavorite(this.data.currentSong)) {
+      deleteFavoriteList(this.data.currentSong)
+    } else {
+      saveFavoriteList(this.data.currentSong)
+    }
+    this.setData({
+      favoriteList: state.favoriteList
+    })
+  },
+
+  isFavorite(song) {
+    const index = this.data.favoriteList.findIndex((item) => {
+      return item.id === song.id
+    })
+    return index > -1
+  },
+
 
 
   //弹窗事件
@@ -536,6 +561,8 @@ Page({
     wx.navigateBack()
     deleteSongList()
   },
+
+ 
 
 
   /**

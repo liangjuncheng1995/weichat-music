@@ -1,5 +1,6 @@
 import {
-  commonParams, ERR_OK
+  commonParams,
+  ERR_OK
 } from "../config/index.js"
 import {
   Http
@@ -35,7 +36,7 @@ class Song {
       return this.lyric
     }
     const result = await this.GetLyric(this.mid)
-    if(result.retcode === ERR_OK) {
+    if (result.retcode === ERR_OK) {
       this.lyric = Base64.decode(result.lyric)
       return this.lyric
     } else {
@@ -120,6 +121,32 @@ class Song {
     return _uid
   }
 
+  static async updatePlayUrl(songs) {
+    if (songs.length === 0) {
+      return []
+    }
+    let arr = []
+    let ReturnArr = JSON.parse(JSON.stringify(songs))
+    songs.forEach((item) => {
+      arr.push(item.mid)
+    })
+
+    let result = await this.getPlayUrl(arr)
+
+    let arr1 = result.url_mid.data.midurlinfo
+
+    for (var i = 0; i < arr1.length; i++) {
+      let temID = arr1[i].songmid
+      for (let j = 0; j < ReturnArr.length; j++) {
+        if (temID == ReturnArr[j].mid) {
+          ReturnArr[j]['url'] == arr1[i]["purl"]
+          break;
+        }
+      }
+    }
+    return ReturnArr
+  }
+
 
 
 }
@@ -143,7 +170,7 @@ function filterString(singer) { //组装合唱的歌手名
   if (!singer) {
     return ''
   }
-  if((typeof singer) === "string") {
+  if ((typeof singer) === "string") {
     return singer
   }
   singer.forEach((s) => {

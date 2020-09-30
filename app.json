@@ -8,7 +8,8 @@
     "pages/player/index",
     "pages/test/index",
     "pages/singer-detail/index",
-    "pages/top-list/index"
+    "pages/top-list/index",
+    "pages/user-center/index"
   ],
   "requiredBackgroundModes": [
     "audio",

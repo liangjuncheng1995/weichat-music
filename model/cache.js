@@ -1,6 +1,14 @@
+import { Song } from "./song"
+
 class Cache {
   static SEARCH_KEY = "__search__"
   static SEARCH_LENGTH = 15
+
+  static PLAY_KEY = "__play__"
+  static PLAY_MAX_LENGTH = 200
+
+  static FAVORITE_KEY = "__favorite__"
+  static FAVORITE_MAX_LENGTH = 200
 
   static insertArray(arr, val, compare, maxLen) {
     const index = arr.findIndex(compare) //寻找搜索key的索引
@@ -43,8 +51,35 @@ class Cache {
     return key
   }
 
+  static _getFavoriteListKeywords() {
+    const key = wx.getStorageSync(Cache.FAVORITE_KEY)
+    if (!key) {
+      wx.setStorageSync(Cache.FAVORITE_KEY, [])
+      return []
+    }
+    return key
+  }
+
+  
+  static _getPlayListKeywords() {
+    const key = wx.getStorageSync(Cache.PLAY_KEY)
+    if (!key) {
+      wx.setStorageSync(Cache.PLAY_KEY, [])
+      return []
+    }
+    return key
+  }
+
   static _setSearchKeywords(searches) {
     wx.setStorageSync(Cache.SEARCH_KEY, searches)
+  }
+
+  static _setFavoriteListKeywords(list) {
+    wx.setStorageSync(Cache.FAVORITE_KEY, list)
+  }
+
+  static _setPlayListKeywords(list) {
+    wx.setStorageSync(Cache.PLAY_KEY, list)
   }
 
   static clearSearch() {
@@ -60,6 +95,51 @@ class Cache {
     this._setSearchKeywords(searches)
     return searches
   }
+
+  static savePlay(song) {
+    let songs = this._getPlayListKeywords()
+    this.insertArray(songs, song, (item) => {
+      return item.id === song.id
+    }, Cache.PLAY_KEY)
+    this._setPlayListKeywords(songs)
+    return songs
+  }
+
+  static saveFavorite(song) {
+    let songs = this._getFavoriteListKeywords()
+    this.insertArray(songs, song, (item) => {
+      return song.id === item.id
+    }, Cache.FAVORITE_MAX_LENGTH)
+    this._setFavoriteListKeywords(songs)
+    return songs
+  }
+  
+  static deleteFavorite(song) {
+    let songs = this._getFavoriteListKeywords()
+    this.deleteFromArray(songs, (item) => {
+      return song.id === item.id
+    })
+    this._setFavoriteListKeywords(songs)
+    return songs
+  }
+
+  static async loadFavorite() {
+    let songs = await Song.updatePlayUrl(this._getFavoriteListKeywords())
+    this._setFavoriteListKeywords(songs)
+    return songs
+  }
+
+  static async loadPlay() {
+    let songs = await Song.updatePlayUrl(this._getPlayListKeywords()) 
+    this._setPlayListKeywords(songs)
+    return songs
+  }
+
+  static loadSequenceList() {
+    return []
+  }
+
+  
 
 
 

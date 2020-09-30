@@ -1,4 +1,7 @@
 <view class="m-header">
   <view class="icon-title"></view>
   <text class="text theme-font-color theme-font-family">Bilibili Music</text>
+  <view class="mine" bindtap="gotoUserCenter">
+    <l-icon name="icon-user" l-class="iconfont icon-user"></l-icon>
+  </view>
 </view>

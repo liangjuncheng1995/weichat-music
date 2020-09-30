@@ -1,0 +1,20 @@
+function noResult(currentIndex, searchHistory, playhistory) {
+  if (currentIndex === 0) {
+    return !playhistory.length
+  } else {
+    return !searchHistory.length
+  }
+}
+
+function noResultDesc(currentIndex) {
+  if (currentIndex === 0) {
+    return "暂无播放歌曲"
+  } else {
+    return "暂无搜索记录"
+  }
+}
+
+module.exports = {
+  noResult: noResult,
+  noResultDesc: noResultDesc
+}

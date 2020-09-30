@@ -71,8 +71,8 @@ export const selectPlay = async function ({
 
 }
 
-export const randomPlay = async function () {
-  let list = state.playlist
+export const randomPlay = async function (Userlist) {
+  let list = Userlist || state.playlist 
   mutations(types.SET_PLAY_MODE, playMode.random) //更改播放的模式
   mutations(types.SET_SEQUENCE_LIST, list) //设置循环的播放列表
   let randomList = shuffle(list)
@@ -222,10 +222,32 @@ export const saveSearchHistory = function (query) {
   mutations(types.SET_SEARCH_HISTORY, result)
 }
 
+export const savePlayHistory = function (song) {
+  console.log("设置播放的历史")
+  mutations(types.SET_PLAY_HISTORY, Cache.savePlay(song))
+}
+
 export const clearSearchHistory = function () {
   mutations(types.SET_SEARCH_HISTORY, Cache.clearSearch())
 }
 
-export const deleteSearchHistory = function(query) {
+export const deleteSearchHistory = function (query) {
   mutations(types.SET_SEARCH_HISTORY, Cache.deleteSearch(query))
+}
+
+export const saveFavoriteList = function(song) {
+  mutations(types.SET_FAVORITE_LIST, Cache.saveFavorite(song))
+}
+
+export const deleteFavoriteList = function(song) {
+  mutations(types.SET_FAVORITE_LIST, Cache.deleteFavorite(song))
+}
+
+
+//加载个人中心的时候更新播放链接
+export const undatePlayUrl = async function () {
+  const songFavorite = await Cache.loadFavorite()
+  mutations(types.SET_FAVORITE_LIST, songFavorite)
+  const songPlay = await Cache.loadPlay()
+  mutations(types.SET_PLAY_HISTORY, songPlay)
 }

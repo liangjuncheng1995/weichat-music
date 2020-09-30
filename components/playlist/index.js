@@ -15,7 +15,11 @@ import {
 } from "../../utils/utils"
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast.js"
 import {
-  checkoutAudioUrl, deleteSongList, deleteSong
+  checkoutAudioUrl,
+  deleteSongList,
+  deleteSong,
+  deleteFavoriteList,
+  saveFavoriteList
 } from "../../store/actions"
 const app = getApp()
 
@@ -55,7 +59,9 @@ Component({
       this.setData({
         sequenceList: state.sequenceList,
         playlist: state.playlist,
-        currentSong: state.playlist[state.currentIndex] || {}
+        currentSong: state.playlist[state.currentIndex] || {},
+        favoriteList: state.favoriteList || [],
+        mode: state.mode
       })
       this.setData({
         show: true
@@ -66,15 +72,18 @@ Component({
       this.setData({
         sequenceList: state.sequenceList,
         playlist: state.playlist,
-        currentSong: state.playlist[state.currentIndex] || {}
+        currentSong: state.playlist[state.currentIndex] || {},
+        favoriteList: state.favoriteList || [],
+        mode: state.mode
       })
-      if(this.data.deleteOperation) {//如果进行了删除歌曲的操作，则不定位列表
+      if (this.data.deleteOperation) { //如果进行了删除歌曲的操作，则不定位列表
         this.setData({
           deleteOperation: false
         })
         return
       }
       this.scrollToCurrent(this.data.currentSong)
+      this.triggerEvent("loadData")
     },
     hide() {
       this.setData({
@@ -152,7 +161,7 @@ Component({
     async selectItem(e) {
       let item = e.currentTarget.dataset.item
       let index = e.currentTarget.dataset.index
-
+      console.log(this.data.mode)
       if (this.data.mode === playMode.random) {
         index = this.data.playlist.findIndex(song => {
           return song.id === item.id
@@ -161,7 +170,7 @@ Component({
       await checkoutAudioUrl(index)
       mutations(types.SET_CURRENT_INDEX, index)
       mutations(types.SET_PLAYING_STATE, true)
-      this.triggerEvent("loadData")
+      // this.triggerEvent("loadData")
     },
 
     showConfirm() {
@@ -188,6 +197,40 @@ Component({
 
 
       this.triggerEvent("loadData")
+    },
+
+    toggleFavorite(e) {
+      const id = e.currentTarget.dataset.item.id
+      const item = this.FindItem(id)
+      if (this.isFavorite(item)) {
+        deleteFavoriteList(item)
+      } else {
+        saveFavoriteList(item)
+      }
+      this.setData({
+        favoriteList: state.favoriteList
+      })
+    },
+
+    FindItem(id) {
+      function findIndex(list, id) {
+        return list.findIndex((item) => {
+          return item.id === id
+        })
+      }
+      let index = findIndex(state.playlist, id)
+      return state.playlist[index]
+    },
+
+    isFavorite(song) {
+      const index = state.favoriteList.findIndex((item) => {
+        return item.id === song.id
+      })
+      return index > -1
+    },
+
+    addSong() {
+      this.selectComponent("#addsong").show()
     }
   }
 })

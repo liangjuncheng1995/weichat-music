@@ -1,0 +1,55 @@
+
+@import "../../app.wxss";
+.user-center {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.switch-container {
+  margin: 20rpx 0 60rpx 0;
+}
+
+.play-btn {
+  box-sizing: border-box;
+  width: 300rpx;
+  padding: 14rpx 0;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 100rpx;
+  font-size: 0;
+}
+
+.icon-play {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12rpx;
+  font-size: 32rpx;
+}
+
+.play-btn .text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+}
+
+.list-container {
+  position: absolute;
+  top: 240rpx;
+  bottom: 0;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.list-container .list-inner {
+  padding: 40rpx 60rpx;
+}
+
+.no-result-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}

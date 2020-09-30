@@ -67,6 +67,22 @@ App({
         return this._playlist
       }
     })
+  },
+
+  watchSequenceList: function(method, sequenceList, callback) {
+    let obj = state
+    Object.defineProperty(obj, sequenceList, {
+      configurable: true,
+      enumerable: true,
+      set: function(value) {
+        this._sequenceList = value
+        method(types.SET_SEQUENCE_LIST, value)
+        callback(value)
+      },
+      get: function(value) {
+        return this._sequenceList
+      }
+    })
   }
   
 })

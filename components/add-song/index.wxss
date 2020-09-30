@@ -1,0 +1,83 @@
+@import '../../app.wxss';
+
+.popup {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #ffffff;
+}
+
+.add-song {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 750rpx;
+  height: 100%;
+  z-index: 400;
+}
+
+.header {
+  position: relative;
+  height: 88rpx;
+  text-align: center;
+}
+
+.header .title {
+  line-height: 88rpx;
+  font-size: 36rpx;
+  color: #333;
+}
+
+.header .close {
+  position: absolute;
+  top: 0;
+  right: 16rpx;
+}
+
+.icon-clear-num {
+  display: block;
+  padding: 24rpx;
+  font-size: 40rpx;
+  /* color: $theme-color; */
+}
+
+
+.search-box-container {
+  margin: 40rpx;
+}
+
+.shortcut {}
+
+.list-container {
+  position: absolute;
+  top: 330rpx;
+  bottom: 0;
+  width: 100%;
+  /* height: 880rpx; */
+}
+
+.list-container .list-scroll {}
+
+.list-container .list-scroll .list-inner {
+  padding: 40rpx 60rpx;
+}
+
+.no-result-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.search-result {
+  position: fixed;
+  top: 248rpx;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.message {
+  border-radius: 0 !important;
+}
+

@@ -8,4 +8,6 @@ export const types = {
   SET_PLAY_MODE: "SET_PLAY_MODE", //设置列表的播放状态
   SET_PLAY_ID: "SET_PLAY_ID", //设置正在播放的歌曲id
   SET_SEARCH_HISTORY: "SET_SEARCH_HISTORY", //设置搜索历史的相关数据
+  SET_PLAY_HISTORY: "SET_PLAY_HISTORY", //设置播放历史的相关数据
+  SET_FAVORITE_LIST: "SET_FAVORITE_LIST", //设置用户收藏的相关数据
 }

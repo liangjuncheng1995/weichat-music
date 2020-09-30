@@ -1,0 +1,52 @@
+<wxs src="../../wxs/addSong.wxs" module="addSong"></wxs>
+
+<l-popup show="{{show}}" l-class="popup" content-align="right">
+	<view class="add-song theme-background-white">
+		<view class="header">
+			<view class="title">添加歌曲到列表</view>
+			<view class="close" bindtap="hide">
+				<l-icon name="icon-clear-num" l-class="iconfont icon-clear-num theme-font-color"></l-icon>
+			</view>
+		</view>
+
+		<view class="search-box-container">
+			<search-box id="search-Box" bind:query="onQueryChange"></search-box>
+		</view>
+
+		<view class="shortcut">
+			<switches bind:switch="switchItem" currentIndex="{{currentIndex}}" switches="{{switches}}"></switches>
+
+			<scroll-view scroll-y class="list-container" hidden="{{currentIndex === 1}}">
+				<view class="list-scroll">
+					<view class="list-inner">
+						<song-list bind:select="selectSong" songs="{{playHistory}}"></song-list>
+					</view>
+				</view>
+			</scroll-view>
+
+			<scroll-view scroll-y class="list-container" hidden="{{currentIndex === 0}}">
+				<view class="list-scroll">
+					<view class="list-inner">
+						<search-list bind:select="addQueryhistory" bind:delete="deleteSearchHistory" searches="{{searchHistory}}"></search-list>
+					</view>
+				</view>
+			</scroll-view>
+
+
+			<view class="no-result-container" wx:if="{{addSong.noResult(currentIndex,searchHistory,playHistory)}}">
+				<no-result title="{{addSong.noResultDesc(currentIndex)}}"></no-result>
+			</view>
+
+		</view>
+
+		<view  class="search-result" wx:if="{{query}}">
+			<suggest contentHeight="{{contentHeight}}" bind:select="selectSuggest" showSinger="{{false}}" query="{{query}}" AddSong="{{true}}"></suggest>
+		</view>
+
+  
+
+		<!-- 使用lin-UI的消息提示 Message -->
+    <l-message l-class="theme-background message" />
+
+	</view>
+</l-popup>

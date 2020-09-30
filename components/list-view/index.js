@@ -134,7 +134,7 @@ Component({
       })
     },
     scroll(e) {
-      console.log(this.data.currentIndex)
+      // console.log(this.data.currentIndex)
       this.setData({
         scrollY: -e.detail.scrollTop
       })

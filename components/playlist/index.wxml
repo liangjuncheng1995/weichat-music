@@ -15,11 +15,11 @@
 
 			<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y class="list-content">
 				<view class="ul">
-					<view class="item" wx:key="index" wx:for="{{sequenceList}}" bindtap="selectItem" data-item="{{item}}" data-index="{{index}}">
+					<view hover-class="" class="item" wx:key="index" wx:for="{{sequenceList}}" bindtap="selectItem" data-item="{{item}}" data-index="{{index}}">
 						<l-icon name="{{player.getCurrentIcon(currentSong.id,item)}}" l-class="current iconfont {{player.getCurrentIcon(currentSong.id,item)}}"></l-icon>
 						<text class="text ellipseOne {{player.getCurrentText(currentSong.id,item)}}">{{item.name}}</text>
-						<view class="like">
-							<l-icon name="icon-favoriteoutline" l-class="iconfont icon-favoriteoutline"></l-icon>
+						<view data-item="{{item}}" class="like" catchtap="toggleFavorite">
+							<l-icon name="{{player.getFavoriteIcon(item, favoriteList)}}" l-class="iconfont {{player.getFavoriteIcon(item, favoriteList)}}"></l-icon>
 						</view>
 						<view class="delete theme-font-color" data-item="{{item}}" catchtap="deleteOne">
 							<l-icon name="icon-clear-num" l-class=" iconfont icon-clear-num"></l-icon>
@@ -29,7 +29,7 @@
 			</scroll-view>
 
 			<view class="list-operate">
-				<view class="add theme-border-color-1">
+				<view class="add theme-border-color-1" bindtap="addSong">
 					<l-icon name="icon-add" l-class="iconfont icon-add theme-font-color "></l-icon>
 					<text class="text theme-font-color">添加歌曲列表</text>
 				</view>
@@ -40,7 +40,9 @@
 			</view>
 		</view>
 	</view>
+	<add-song id="addsong"></add-song>
 </l-popup>
+
 
 <v-toast id="van-toast" />
 

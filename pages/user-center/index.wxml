@@ -1,0 +1,36 @@
+<wxs src="../../wxs/user-center.wxs" module="user"></wxs>
+
+<view class="user-center theme-background-color">
+
+	<view class="switch-container">
+		<switches bind:switch="switchItem" currentIndex="{{currentIndex}}" switches="{{switches}}"></switches>
+	</view>
+
+	<view bindtap="random" class="play-btn theme-border-color-1">
+		<l-icon name="icon-play" l-class="iconfont icon-play"></l-icon>
+		<text class="text theme-font-color">随机播放全部</text>
+	</view>
+
+	<scroll-view scroll-y style="bottom:{{bottom}}rpx" class="list-container" hidden="{{currentIndex === 1}}">
+		<view class="list-scroll">
+			<view class="list-inner">
+				<song-list bind:select="selectSong" songs="{{favoriteList}}"></song-list>
+			</view>
+		</view>
+	</scroll-view>
+
+	<scroll-view scroll-y style="bottom:{{bottom}}rpx" class="list-container" hidden="{{currentIndex === 0}}">
+		<view class="list-scroll">
+			<view class="list-inner">
+				<song-list bind:select="selectSong" songs="{{playHistory}}"></song-list>
+			</view>
+		</view>
+	</scroll-view>
+
+	<view class="no-result-container" wx:if="{{user.noResult(currentIndex, favoriteList,playHistory)}}">
+		<no-result title="{{user.noResultDesc(currentIndex)}}"></no-result>	
+	</view>
+</view>
+
+<m-mini-player></m-mini-player>
+

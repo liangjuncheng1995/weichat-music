@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "no-result": "/components/no-result/index",
+    "search-box": "/components/search-box/index",
+    "switches": "/components/switches/index",
+    "song-list": "/components/song-list/index",
+    "search-list": "/components/search-list/index",
+    "suggest": "/components/suggest/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "l-message": "/miniprogram_npm/lin-ui/message/index"
+  }
+}

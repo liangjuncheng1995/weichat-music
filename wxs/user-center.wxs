@@ -1,0 +1,20 @@
+function noResult(currentIndex, favoriteList, playhistory) {
+  if (currentIndex === 0) {
+    return !favoriteList.length
+  } else {
+    return !playhistory.length
+  }
+}
+
+function noResultDesc(currentIndex) {
+  if (currentIndex === 0) {
+    return "暂无收藏歌曲"
+  } else {
+    return "你还没有听过歌曲"
+  }
+}
+
+module.exports = {
+  noResult: noResult,
+  noResultDesc: noResultDesc
+}

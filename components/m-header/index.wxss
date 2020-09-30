@@ -30,3 +30,15 @@
   font-size: 36rpx;
   font-weight: 400;
 }
+
+.mine {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon-user {
+  display: block;
+  padding: 24rpx;
+  font-size: 40rpx;
+}

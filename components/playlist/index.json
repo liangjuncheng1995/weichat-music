@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "l-popup": "/miniprogram_npm/lin-ui/popup/index"
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "add-song": "/components/add-song/index"
   }
 }

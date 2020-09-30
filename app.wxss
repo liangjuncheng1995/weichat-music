@@ -94,7 +94,8 @@
 }
 
 .l-icon-icon-shoucang:before {
-  content: "\e60c"
+  content: "\e60c";
+  color: #fb7299 !important;
 }
 
 .l-icon-icon-favoriteoutline:before {
@@ -145,4 +146,8 @@
 
 .l-icon-icon-musical-note:before {
   content: "\e630";
+}
+
+.l-icon-icon-user:before {
+  content: "\e66e";
 }

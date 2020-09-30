@@ -15,4 +15,7 @@ export const state = {
   fullScreen: false, //正常的播放器是否正常加载，与模拟播放器的状态是相反的，只能显示一个
   playId: '', //正在播放的歌曲id
   searchHistory: Cache._getSearchKeywords(), //储存搜索历史的相关数据
+  playHistory: [], //播放历史
+  // favoriteList: [], //收藏的歌曲
+  favoriteList: Cache._getFavoriteListKeywords()
 }

@@ -47,6 +47,12 @@
   height: 120rpx;
 }
 
+.icon view {
+  width: 120rpx !important;
+  height: 120rpx !important;
+}
+
+
 .text {
   display: flex;
   flex-direction: column;

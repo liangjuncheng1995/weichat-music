@@ -55,6 +55,10 @@
   overflow: hidden;
 }
 
+.view-hover {
+  background: rgba(0,0,0,0.1);
+}
+
 .item {
   display: flex;
   align-items: center;

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "switches": "/components/switches/index",
+    "song-list": "/components/song-list/index",
+    "no-result": "/components/no-result/index",
+    "m-mini-player": "/components/mini-player/index"
+  }
+}

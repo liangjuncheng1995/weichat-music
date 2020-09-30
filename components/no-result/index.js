@@ -1,10 +1,10 @@
-// components/m-header/index.js
+// components/no-result/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    title: String
   },
 
   /**
@@ -18,10 +18,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotoUserCenter() {
-      wx.navigateTo({
-        url: '/pages/user-center/index',
-      })
-    }
+
   }
 })

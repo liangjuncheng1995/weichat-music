@@ -7,7 +7,7 @@ import {
 import {
   state
 } from "../../store/state"
-import { deleteSongList } from "../../store/actions"
+import { deleteSongList, savePlayHistory } from "../../store/actions"
 
 const app = getApp()
 const getter = app.getters()
@@ -73,11 +73,13 @@ Component({
       const currentSong = res.currentIndex > -1 ?  res.playlist[res.currentIndex] : ""
       const currentIndex = res.currentIndex
       const playing = res.playing
+      const favoriteList = res.favoriteList
       this.setData({
         fullScreen,
         currentSong,
         playing,
-        currentIndex
+        currentIndex,
+        favoriteList
       })
       if (res.currentIndex === -1 || res.playId === "") {
         audio.pause()
@@ -160,6 +162,9 @@ Component({
         audio.src = this.data.currentSong.url
         audio.title = this.data.currentSong.name || this.data.currentSong.singer || "无歌名"
         mutations(types.SET_PLAY_ID, this.data.currentSong.id)
+        //设置播放的历史
+        savePlayHistory(this.data.currentSong)
+      
       } else {
         console.log("跳转：161")
         wx.navigateTo({

@@ -1,0 +1,14 @@
+@import "../../app.wxss";
+.no-result {
+  text-align: center;
+}
+
+.no-result-text {
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+  position: relative;
+  font-size: 28rpx;
+  position: relative;
+}
