@@ -5,6 +5,9 @@ import {
   mutations
 } from "../../store/mutations"
 import { state } from "../../store/state"
+import {
+  watchPlayList
+} from "../../store/watch"
 const app = getApp()
 
 // components/music-list/index.js
@@ -90,7 +93,7 @@ Component({
           bottom: 0
         })
       }
-      app.watchPlayList(mutations, "playlist", Finish)
+      watchPlayList(mutations, "playlist", Finish)
       let self = this
       function Finish(playlist) {
         console.log("music-list播放列表的监听")

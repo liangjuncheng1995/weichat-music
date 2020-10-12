@@ -46,8 +46,8 @@ export const checkoutAudioUrl = async function (index) {
 }
 
 
-export const selectPlay = async function ({
-  index
+export const selectPlay = async function ({lists,
+  index,prev
 }) {
   let list = state.playlist
   if (!list[index].url) {
@@ -66,7 +66,9 @@ export const selectPlay = async function ({
   }
 
   mutations(types.SET_CURRENT_INDEX, index)
-  mutations(types.SET_FULL_SCREEN, true)
+  if(!prev) {
+    mutations(types.SET_FULL_SCREEN, true)
+  }
   mutations(types.SET_PLAYING_STATE, true)
 
 }
@@ -162,6 +164,7 @@ export const deleteSong = async function (song) {
 
 
 export const insertSong = async function (song) {
+  console.log(song)
   let newSong = createSong(song)
   if (state.playlist === undefined) state.playlist = []
   if (state.currentIndex === undefined) state.currentIndex = -1

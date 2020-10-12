@@ -7,8 +7,12 @@ import {
 import {
   createSong
 } from "../../model/song"
-import { mutations } from "../../store/mutations"
-import { types } from "../../store/mutation-types"
+import {
+  mutations
+} from "../../store/mutations"
+import {
+  types
+} from "../../store/mutation-types"
 
 // pages/singer-detail/index.js
 Page({
@@ -19,13 +23,17 @@ Page({
   data: {
     songs: [],
     title: '',
-    bgImage: ''
+    bgImage: '',
+    singerId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      singerId: options.singerId
+    })
     this._getDetail(options.singerId)
     this.setTitleImage(options)
   },
@@ -37,8 +45,9 @@ Page({
     })
   },
 
-  async _getDetail(sigerId) {
-    const result = await Singer.getSingerDetail(sigerId)
+  async _getDetail(singerId) {
+   
+    const result = await Singer.getSingerDetail(singerId)
     if (result.code === ERR_OK) {
       this.setData({
         songs: this._normalizeSongs(result.data.list)
@@ -60,7 +69,7 @@ Page({
 
   setPlayList() {
     console.log("开始设置歌手仓库的数据")
-    if(this.data.songs.length > 0) {
+    if (this.data.songs.length > 0) {
       mutations(types.SET_PLAYLIST, this.data.songs)
     }
   },
@@ -71,6 +80,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      path: `/pages/singer-detail/index?singerId=${this.data.singerId}&singername=${this.data.title}&avatar=${encodeURIComponent(this.data.bgImage)}`,
+      title: this.data.title,
+      imageUrl: this.data.bgImage
+    }
   }
 })

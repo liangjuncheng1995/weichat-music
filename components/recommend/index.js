@@ -55,10 +55,14 @@ Component({
 
     },
     gotoURL(data) {
-      const url = data.target.dataset.url
-      console.log(url)
-      wx.navigateTo({
-        url: `/pages/webView/webView?url=${url}`,
+      // const url = data.target.dataset.url
+      // console.log(url)
+      // wx.navigateTo({
+      //   url: `/pages/webView/webView?url=${url}`,
+      // })
+      wx.showToast({
+        title: '暂时不支持跳转webView网址的功能，请点击下方的推荐列表',
+        icon: "none"
       })
     },
     

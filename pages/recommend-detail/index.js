@@ -18,13 +18,17 @@ Page({
     songs: [],
     title: '',
     bgImage: '',
-    bottom: 0
+    bottom: 0,
+    dissid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      dissid: options.dissid
+    })
     this._getSongList(options.dissid)
     this.setTitleImage(options)
   },
@@ -71,6 +75,14 @@ Page({
     this.setData({
       bottom: e.detail
     })
-  } 
+  },
+
+  onShareAppMessage: function() {
+    return {
+      path: `/pages/recommend-detail/index?dissid=${this.data.dissid}&dissname=${this.data.title}&imgurl=${encodeURIComponent(this.data.bgImage)}`,
+      title: this.data.title,
+      imageUrl: this.data.bgImage
+    }
+  }
 
 })

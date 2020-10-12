@@ -57,7 +57,7 @@ Component({
     selectItem(data) {
       const item = data.currentTarget.dataset.item
       wx.navigateTo({
-        url: `/pages/top-list/index?topid=${item.id}&toptile=${item.topTitle}&imgurl=${encodeURIComponent(item.picUrl)}`,
+        url: `/pages/top-list/index?topid=${item.id}&toptitle=${item.topTitle}&imgurl=${encodeURIComponent(item.picUrl)}`,
       })
     }
   }

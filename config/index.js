@@ -1,5 +1,6 @@
 const config = {
-  apiBaseUrl: "http://192.168.1.40:8080/recordApi"
+  // apiBaseUrl: "http://192.168.1.40:6001/recordApi"
+  apiBaseUrl: "https://www.ljcpro.cn/recordApi"
 }
 
 const options = {
@@ -24,7 +25,8 @@ const playMode = {
   random: 2
 }
 
-const netWorkurl = "https://y.qq.com"
+// const netWorkurl = "https://y.qq.com"
+const netWorkurl = ""
 
 
 

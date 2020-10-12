@@ -3,6 +3,7 @@ import { undatePlayUrl, insertSong, randomPlay } from "../../store/actions"
 import { Song } from "../../model/song"
 import { mutations } from "../../store/mutations"
 import { types } from "../../store/mutation-types"
+import { watchPlayList } from "../../store/watch"
 
 const app = getApp()
 
@@ -51,7 +52,8 @@ Page({
 
   watchData() {
     console.log("开始监听user-center：playlist")
-    app.watchPlayList(mutations, 'playlist', Finish)
+    // app.watchPlayList(mutations, 'playlist', Finish)
+    watchPlayList(mutations, 'playlist', Finish)
     let self = this
     function Finish(playlist) {
       self.getScrollViewBottom(playlist)

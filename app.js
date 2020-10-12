@@ -1,4 +1,8 @@
 //app.js
+require('./common/runtime.js')
+require('./common/vendor.js')
+require('./common/main.js')
+
 
 import {
   state
@@ -8,6 +12,26 @@ import {
   mutations
 } from "./store/mutations"
 import { types } from "./store/mutation-types.js"
+import { watchCurrentIndex, watchPlayId, watchPlayList } from "./store/watch.js"
+
+watchCurrentIndex(mutations, "currentIndex", _currentIndex)
+watchPlayId(mutations, "playId", _playId)
+watchPlayList(mutations, "playlist", _playlist)
+function _currentIndex() {
+
+}
+function _playId() {
+  
+}
+function _playlist() {
+  
+}
+
+console.log("小程序启动的时候：")
+// console.log(state.currentIndex)
+// console.log(state.playlist)
+// console.log(state.playId)
+state
 
 
 App({
@@ -24,65 +48,12 @@ App({
     data: state
   },
   
-  watchPlayId: function(method, playId, callback) {
-    let obj = state
-    Object.defineProperty(obj, playId, {
-      configurable: true,
-      enumerable: true,
-      set: function(value) {
-        this._playId = value
-        callback(value)
-      },
-      get: function(value) {
-        return this._playId
-      }
-    })
-  },
+  
 
-  watchCurrentIndex: function(method, currentIndex, callback) {
-    let obj = state
-    Object.defineProperty(obj, currentIndex, {
-      configurable: true,
-      enumerable: true,
-      set: function(value) {
-        this._currentIndex = value
-        callback(value)
-      },
-      get: function(value) {
-        return this._currentIndex
-      }
-    })
-  },
 
-  watchPlayList: function(method, playlist, callback) {
-    let obj = state
-    Object.defineProperty(obj, playlist, {
-      configurable: true,
-      enumerable: true,
-      set: function(value) {
-        this._playlist = value
-        callback(value)
-      },
-      get: function(value) {
-        return this._playlist
-      }
-    })
-  },
+  
 
-  watchSequenceList: function(method, sequenceList, callback) {
-    let obj = state
-    Object.defineProperty(obj, sequenceList, {
-      configurable: true,
-      enumerable: true,
-      set: function(value) {
-        this._sequenceList = value
-        method(types.SET_SEQUENCE_LIST, value)
-        callback(value)
-      },
-      get: function(value) {
-        return this._sequenceList
-      }
-    })
-  }
   
 })
+
+

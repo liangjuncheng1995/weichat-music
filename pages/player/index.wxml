@@ -87,7 +87,7 @@
 	show="{{showDialog}}"
 	type="confirm"
 	title="非常抱歉"
-	content="该歌曲需要vip才能听，是否跳转qq音乐官网"
+	content="该歌曲需要vip才能听，请打开qq音乐App搜索该歌曲"
 	bind:linconfirm="confirm"
 	bind:lincancel="cancel"
 	l-cancel-class=""

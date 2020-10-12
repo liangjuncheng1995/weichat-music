@@ -14,7 +14,11 @@
 
 <wxs module="p">
 	var getDesc = function(song) {
-		return song.singer + "·" + song.album
+		var album = JSON.parse(JSON.stringify(song.album)) 
+		if(album === undefined) {
+			album = ''
+		}
+		return song.singer + "·" + album
 	}
 
 	var getRankCls = function(index) {

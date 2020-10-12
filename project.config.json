@@ -4,9 +4,9 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
-		"enhance": false,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -90,6 +90,20 @@
 					"id": -1,
 					"name": "用户中心",
 					"pathName": "pages/user-center/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "播放页面",
+					"pathName": "pages/player/index",
+					"query": "a=绅士&b=261&c=102636799&d=001Qu4I30eVFYb&e=演员&f=003y8dsH2wBHlo&g=薛之谦",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "todo",
+					"pathName": "pages/home/home",
 					"query": "",
 					"scene": null
 				}

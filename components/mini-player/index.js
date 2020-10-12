@@ -7,7 +7,11 @@ import {
 import {
   state
 } from "../../store/state"
-import { deleteSongList, savePlayHistory } from "../../store/actions"
+import {
+  deleteSongList,
+  savePlayHistory
+} from "../../store/actions"
+import { watchPlayId } from "../../store/watch";
 
 const app = getApp()
 const getter = app.getters()
@@ -33,7 +37,7 @@ Component({
 
   pageLifetimes: {
     show: function () {
-      console.log("页面被展示了")
+      console.log("页面被展示了mini-player")
       this.loadData()
       this.watchData()
     }
@@ -54,9 +58,9 @@ Component({
    */
   methods: {
     watchData() {
-      app.watchPlayId(mutations, "playId", Finish);
+      watchPlayId(mutations, "playId", Finish);
+      console.log("执行监听播放Id")
       let self = this
-
       function Finish(playId) {
         self._Finish(playId)
       }
@@ -67,10 +71,14 @@ Component({
         this.loadData()
       }
     },
+
+   
+
     loadData(e) {
       const res = app.getters()
+
       const fullScreen = res.fullScreen
-      const currentSong = res.currentIndex > -1 ?  res.playlist[res.currentIndex] : ""
+      const currentSong = res.currentIndex > -1 ? res.playlist[res.currentIndex] : ""
       const currentIndex = res.currentIndex
       const playing = res.playing
       const favoriteList = res.favoriteList
@@ -86,11 +94,11 @@ Component({
         this.hidePlaylist()
         return
       }
-      if((e && e.detail) || this.data.currentSong.id !== res.playId) {//在mini播放列表点击了歌曲
+      if ((e && e.detail) || this.data.currentSong.id !== res.playId) { //在mini播放列表点击了歌曲
         //设置正在播放的歌曲id
         this.setPlayData()
       }
-      
+
       this.OberservePer()
     },
 
@@ -158,13 +166,13 @@ Component({
       }
     },
     setPlayData() {
-      if(this.data.currentSong.url) {
+      if (this.data.currentSong.url) {
         audio.src = this.data.currentSong.url
         audio.title = this.data.currentSong.name || this.data.currentSong.singer || "无歌名"
         mutations(types.SET_PLAY_ID, this.data.currentSong.id)
         //设置播放的历史
         savePlayHistory(this.data.currentSong)
-      
+
       } else {
         console.log("跳转：161")
         wx.navigateTo({

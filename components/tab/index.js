@@ -8,6 +8,7 @@ import {
 import {
   mutations
 } from "../../store/mutations"
+import { watchPlayList } from "../../store/watch";
 const app = getApp()
 Component({
   /**
@@ -42,8 +43,9 @@ Component({
    */
   methods: {
     watchData() {
+      console.log(state)
       console.log("tab组件的监听：")
-      app.watchPlayList(mutations, 'playlist', Finish)
+      watchPlayList(mutations, 'playlist', Finish)
       let self = this
 
       function Finish(playlist) {
@@ -53,7 +55,7 @@ Component({
     getScrollViewHeight() {
       let windowHeight = px2rpx(wx.getSystemInfoSync().windowHeight) //整个窗口的高度
       let headerHeight = 88
-      let headerNav = 86
+      let headerNav = 80
       let miniPlayer = this.getMiniPlayHeight()
       this.setData({
         contentHeight: windowHeight - headerHeight - headerNav - miniPlayer

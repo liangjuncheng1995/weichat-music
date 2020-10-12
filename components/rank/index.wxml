@@ -3,7 +3,7 @@
 		<scroll-view style="height:{{contentHeight}}rpx" scroll-y="{{true}}">
 			<l-loadmore type="{{type}}" l-end-class="endClass" show="{{show}}" end-text="已经到底了">
 				<view slot="content">
-					<view wx:for="{{topList}}" data-item="{{item}}" bindtap="selectItem" wx:key="index" class="item">
+					<view wx:if="{{item.topTitle !== '听书榜'}}" wx:for="{{topList}}" data-item="{{item}}" bindtap="selectItem" wx:key="index" class="item">
 						<view class="icon">
 							<l-image-loader class="avatar" mode="aspectFill" webp style="width:200rpx;height:200rpx;" placeholder="{{placeholderURL}}" src="{{item.picUrl}}"> </l-image-loader>
 						</view>

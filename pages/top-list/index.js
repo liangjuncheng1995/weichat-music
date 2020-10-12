@@ -24,14 +24,19 @@ Page({
     songs: [],
     title: '',
     bgImage: '',
-    rank: true
+    rank: true,
+    topid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this._getRankDetail(options.topid)
+    this.setData({
+      topid: options.topid
+    })
     this.setTitleImage(options)
   },
 
@@ -56,9 +61,14 @@ Page({
   },
 
   setTitleImage(options) {
+    const bgImage = decodeURIComponent(decodeURIComponent(options.imgurl))
+    const title = decodeURIComponent(options.toptitle)
+    console.log("链接：")
+    console.log(title)
+    console.log(bgImage)
     this.setData({
-      title: options.dissname,
-      bgImage: decodeURIComponent(options.imgurl)
+      title: title,
+      bgImage: bgImage
     })
   },
 
@@ -76,6 +86,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      url: `/pages/top-list/index?topid=${this.data.topid}&toptitle=${encodeURIComponent(this.data.title)}&imgurl=${encodeURIComponent(this.data.bgImage)}`,
+      title: this.data.title,
+      imageUrl: this.data.bgImage
+    }
   }
 })

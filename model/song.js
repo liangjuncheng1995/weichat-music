@@ -19,7 +19,8 @@ class Song {
     album,
     duration,
     image,
-    url
+    url,
+    shareAlbumId
   }) {
     this.id = id
     this.mid = mid
@@ -29,6 +30,7 @@ class Song {
     this.duration = duration
     this.image = image
     this.url = url
+    this.shareAlbumId = shareAlbumId
   }
 
   async getLyric() {
@@ -152,8 +154,16 @@ class Song {
 }
 
 export function createSong(musicData) {
-  // console.log(musicData)
-  const image = musicData.albummid ? `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000` : musicData.image
+  let image = musicData.albummid ? `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000` : musicData.image
+  if(!image && musicData.shareAlbumId) {//分享的处理
+    image = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.shareAlbumId}.jpg?max_age=2592000`
+  }
+
+
+  const shareAlbumId = musicData.albummid ? musicData.albummid : 
+  filterURl(image)
+
+  
   return new Song({
     id: musicData.songid || musicData.id,
     mid: musicData.songmid || musicData.mid,
@@ -162,7 +172,12 @@ export function createSong(musicData) {
     album: musicData.albumname || musicData.album,
     duration: musicData.interval || musicData.duration,
     image: image,
+    shareAlbumId: shareAlbumId
   })
+}
+
+function filterURl(url) {
+  return url.split('T002R300x300M000')[1].split('.jpg')[0]
 }
 
 function filterString(singer) { //组装合唱的歌手名

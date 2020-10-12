@@ -17,7 +17,8 @@ import {
   resetSongList,
   savePlayHistory,
   deleteFavoriteList,
-  saveFavoriteList
+  saveFavoriteList,
+  insertSong
 } from "../../store/actions"
 import {
   playMode
@@ -71,10 +72,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     console.log(options)
 
-    if (options.id) { //分享进来 
+    if (options.c) { //分享进来 
+      await this.setShareSong(options)
+      this.loadingData()
+      setTimeout(() => {
+        // wx.navigateTo({
+        //   url: '/pages/test/index',
+        // })
+      }, 3000)
 
     } else {
       this.loadingData()
@@ -82,6 +90,19 @@ Page({
   },
 
   onReady() {},
+
+  async setShareSong(s) {
+    const song = {
+      album: s.a,
+      duration: s.b,
+      id: s.c,
+      mid: s.d,
+      name: s.e,
+      shareAlbumId: s.f,
+      singer: s.g
+    }
+    await insertSong(song)
+  },
 
   loadingData() {
 
@@ -114,7 +135,7 @@ Page({
       this.setData({
         showDialog: true
       })
-      if(!this.data.fullScreen) {
+      if (!this.data.fullScreen) {
         resetSongList()
         return
       }
@@ -127,11 +148,11 @@ Page({
       mutations(types.SET_PLAY_ID, this.data.currentSong.id)
       this.setPlayData()
     }
-    if(this.data.playing) {
+    if (this.data.playing) {
       audio.play()
     }
-    if (state.fullScreen) {//mini播放器存在的话就不用执行监听了
-     
+    if (state.fullScreen) { //mini播放器存在的话就不用执行监听了
+
       audio.onTimeUpdate(() => {
         this.setData({
           currentTime: audio.currentTime,
@@ -264,7 +285,8 @@ Page({
       }
       await selectPlay({
         list: this.data.playlist,
-        index
+        index,
+        prev: "prev"
       })
       this.loadingData()
     }
@@ -310,7 +332,7 @@ Page({
       } else { //点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
         const audioCurrentTime = audio.currentTime || 0
         const percent = audioCurrentTime / this.data.currentSong.duration
-        if(this.data.playing) {
+        if (this.data.playing) {
           this.data.currentLyric.seek(audioCurrentTime * 1000)
         } else {
           const currentTime = this.data.currentSong.duration * percent
@@ -321,7 +343,7 @@ Page({
           percent
         })
       }
-    } else if(resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") > -1) {
+    } else if (resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") > -1) {
       this.setData({
         playingLyric: "此歌曲为没有填词的纯音乐，请您欣赏",
         currentLyric: null
@@ -429,7 +451,7 @@ Page({
         opacity = 0;
       }
     }
-    
+
     this.setData({
       transitionDurationMiddleL: `300ms`,
       transitionDurationLyricList: `300ms`,
@@ -529,7 +551,7 @@ Page({
   },
 
   toggleFavorite() {
-    if(this.isFavorite(this.data.currentSong)) {
+    if (this.isFavorite(this.data.currentSong)) {
       deleteFavoriteList(this.data.currentSong)
     } else {
       saveFavoriteList(this.data.currentSong)
@@ -550,27 +572,23 @@ Page({
 
   //弹窗事件
   confirm() {
-    wx.navigateTo({
-      url: '/pages/webView/webView',
-    })
-    this.setData({
-      gotoed: true
-    })
+    // wx.navigateTo({
+    //   url: '/pages/webView/webView',
+    // })
+    // this.setData({
+    //   gotoed: true
+    // })
+    wx.navigateBack()
+    deleteSongList()
   },
   cancel() {
     wx.navigateBack()
     deleteSongList()
   },
 
- 
 
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  },
 
   onShow() {
     if (!this.data.currentSong.url && this.data.gotoed) {
@@ -585,5 +603,32 @@ Page({
     console.log("退出了播放器")
     console.log(this.data.currentSong)
     mutations(types.SET_FULL_SCREEN, false)
-  }
+  },
+
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    console.log("用户开始分享")
+    console.log("当前播放的歌曲：")
+    console.log(state.playlist[state.currentIndex])
+    const shareObj = state.playlist[state.currentIndex]
+    let p = [
+      "a=" + shareObj.album,
+      "b=" + shareObj.duration,
+      "c=" + shareObj.id,
+      "d=" + shareObj.mid,
+      "e=" + shareObj.name,
+      "f=" + shareObj.shareAlbumId,
+      "g=" + shareObj.singer
+    ].join('&')
+    console.log(p)
+    return {
+      imageUrl: shareObj.image,
+      title: shareObj.name,
+      path: `/pages/player/index?${p}`
+    }
+  },
+
 })

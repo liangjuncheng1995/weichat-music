@@ -21,6 +21,7 @@ import {
   deleteFavoriteList,
   saveFavoriteList
 } from "../../store/actions"
+import { watchCurrentIndex } from "../../store/watch"
 const app = getApp()
 
 // components/playlist/index.js
@@ -149,7 +150,10 @@ Component({
       })
     },
     watchData() {
-      app.watchCurrentIndex(mutations, "currentIndex", FinishPlaylist);
+
+      watchCurrentIndex(mutations, "currentIndex", FinishPlaylist)
+
+      // app.watchCurrentIndex(mutations, "currentIndex", FinishPlaylist);
       let self = this
 
       function FinishPlaylist(currentIndex) {
