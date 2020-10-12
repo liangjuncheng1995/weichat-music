@@ -106,6 +106,13 @@
 					"pathName": "pages/home/home",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "审核的用户详情页面",
+					"pathName": "pages/singer-detail/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
