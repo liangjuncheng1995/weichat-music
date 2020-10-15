@@ -17,5 +17,6 @@ export const state = {
   searchHistory: Cache._getSearchKeywords(), //储存搜索历史的相关数据
   playHistory: [], //播放历史
   // favoriteList: [], //收藏的歌曲
-  favoriteList: Cache._getFavoriteListKeywords()
+  favoriteList: Cache._getFavoriteListKeywords(),
+  switch: 0, //审核音乐播放的开关，审核代码的时候需要设置为0
 }

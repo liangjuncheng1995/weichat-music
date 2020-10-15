@@ -1,3 +1,7 @@
+const { state } = require("../../store/state")
+const { SwitchType } = require("../../core/enums")
+const { Switch } = require("../../model/switch")
+
 // pages/index/index.js
 Page({
 
@@ -5,15 +9,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    Switch: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    if(state.switch === SwitchType.OPEN) {
+      this.setData({
+        Switch: true
+      })
+    } else {
+      const result = await Switch.getSwitchType() 
+      if(result.switch === SwitchType.OPEN) {
+        state.switch = SwitchType.OPEN
+      } else {
+        state.switch = SwitchType.CLOSE
+      }
+      if(state.switch === SwitchType.OPEN) {
+        this.setData({
+          Switch: true
+        })
+      } else {
+        this.setData({
+          Switch: false
+        })
+      }
+    }
   },
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

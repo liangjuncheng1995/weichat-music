@@ -32,7 +32,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     console.log(options)
+    if (!options.topid) {
+      wx.navigateTo({
+        url: '/pages/index/index',
+      })
+      return
+    }
+
     this._getRankDetail(options.topid)
     this.setData({
       topid: options.topid

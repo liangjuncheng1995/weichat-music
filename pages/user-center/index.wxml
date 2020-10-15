@@ -1,6 +1,6 @@
 <wxs src="../../wxs/user-center.wxs" module="user"></wxs>
 
-<view class="user-center theme-background-color">
+<view class="user-center theme-background-color" wx:if="{{Switch}}">
 
 	<view class="switch-container">
 		<switches bind:switch="switchItem" currentIndex="{{currentIndex}}" switches="{{switches}}"></switches>
@@ -30,6 +30,9 @@
 	<view class="no-result-container" wx:if="{{user.noResult(currentIndex, favoriteList,playHistory)}}">
 		<no-result title="{{user.noResultDesc(currentIndex)}}"></no-result>	
 	</view>
+</view>
+<view wx:else style="overflow:hidden;">
+	<s-welcome></s-welcome>
 </view>
 
 <m-mini-player></m-mini-player>

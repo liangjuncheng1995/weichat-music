@@ -135,7 +135,7 @@
   /***/ (function(module, exports, __webpack_require__) {
   
   "use strict";
-  /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+  /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
   //
   //
   //
@@ -182,7 +182,24 @@
   //
   //
   //
-  var _default =
+  
+  var promisic = function promisic(func) {
+    return function () {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      return new Promise(function (resolve, reject) {
+        var args = Object.assign(params, {
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(error) {
+            reject(error);
+          } });
+  
+        func(args);
+      });
+    };
+  };var _default =
+  
+  
   {
     data: function data() {
       return {
@@ -194,8 +211,11 @@
         textShow: false };
   
     },
+    mounted: function mounted() {
+      console.log("mounted");
+    },
     onLoad: function onLoad() {
-  
+      console.log("onLoad");
     },
     computed: {
       listData: function listData() {
@@ -211,7 +231,7 @@
               newList.push(item);
             }
           });
-          this.text = "代听";
+          this.text = "代做";
           return newList;
         }
         if (this.activeIndex == 2) {
@@ -249,21 +269,31 @@
           }, 350);
         });
       },
-      add: function add() {
-        if (this.value === '') {
-          uni.showToast({
-            title: "请输入歌曲名",
-            icon: "none" });
+      add: function add() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+                  _this3.value === '')) {_context.next = 3;break;}
+                  uni.showToast({
+                    title: "请输入歌曲名",
+                    icon: "none" });return _context.abrupt("return");case 3:_context.next = 5;return (
   
-          return;
-        }
-        this.list.unshift({
-          id: 'id' + new Date().getTime(),
-          content: this.value,
-          checked: false });
   
-        this.value = '';
-        this.close();
+  
+  
+                    _this3.checkContent());case 5:result = _context.sent;if (!(
+                  result !== 0)) {_context.next = 9;break;}
+                  uni.showToast({
+                    title: "您输入的内容涉及违规",
+                    icon: "none" });return _context.abrupt("return");case 9:
+  
+  
+  
+  
+                  _this3.list.unshift({
+                    id: 'id' + new Date().getTime(),
+                    content: _this3.value,
+                    checked: false });
+  
+                  _this3.value = '';
+                  _this3.close();case 12:case "end":return _context.stop();}}}, _callee);}))();
       },
       finish: function finish(id) {
         var index = this.list.findIndex(function (item) {return item.id === id;});
@@ -271,6 +301,45 @@
       },
       tab: function tab(index) {
         this.activeIndex = index;
+      },
+      getToken: function getToken() {
+        return new Promise(function (resolve, reject) {
+          uni.request({
+            url: "https://api.weixin.qq.com/cgi-bin/token",
+            method: "GET",
+            data: {
+              grant_type: "client_credential",
+              appid: "wx6245542107cf6c4c",
+              secret: "f404e01c98ad6348916b4789399406b7" },
+  
+            success: function success(res) {
+              if (res.statusCode === 200) {
+                resolve(res.data.access_token);
+              }
+            } });
+  
+        });
+      },
+  
+      checkScret: function checkScret(token) {var _this4 = this;
+        return new Promise(function (resolve, reject) {
+          var self = _this4;
+          var data = {
+            content: self.value };
+  
+          uni.request({
+            url: "https://api.weixin.qq.com/wxa/msg_sec_check?access_token=".concat(token),
+            method: "POST",
+            data: data,
+            success: function success(res) {
+              resolve(res.data.errcode);
+            } });
+  
+        });
+      },
+      checkContent: function checkContent() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var token;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                    _this5.getToken());case 2:token = _context2.sent;_context2.next = 5;return (
+                    _this5.checkScret(token));case 5:return _context2.abrupt("return", _context2.sent);case 6:case "end":return _context2.stop();}}}, _callee2);}))();
       } } };exports.default = _default;
   /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
   

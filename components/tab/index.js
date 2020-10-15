@@ -24,7 +24,8 @@ Component({
   data: {
     contentHeight: 0,
     singerActivity: false,
-    rankActivity: false
+    rankActivity: false,
+    searchActivity: false
   },
   pageLifetimes: {
     show() {
@@ -81,6 +82,12 @@ Component({
             rankActivity: true
           })
           break;
+        case "search": 
+          this.setData({
+            searchActivity: true
+          })
+          break;
+          
       }
     }
   }

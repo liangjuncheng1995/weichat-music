@@ -4,6 +4,7 @@ import { Song } from "../../model/song"
 import { mutations } from "../../store/mutations"
 import { types } from "../../store/mutation-types"
 import { watchPlayList } from "../../store/watch"
+import { SwitchType } from "../../core/enums"
 
 const app = getApp()
 
@@ -31,6 +32,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    if(state.switch === SwitchType.OPEN) {
+      this.setData({
+        Switch: true
+      })
+    } else {
+      this.setData({
+        Switch: false
+      })
+    }
+
     await undatePlayUrl()
     this.setData({
       favoriteList: state.favoriteList,
@@ -113,6 +124,11 @@ Page({
     await randomPlay(list)
     wx.navigateTo({
       url: '/pages/player/index'
+    })
+  },
+  gotoHome() {
+    wx.navigateTo({
+      url: '/pages/home/home',
     })
   }
 })

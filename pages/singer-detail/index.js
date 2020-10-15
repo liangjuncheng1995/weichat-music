@@ -31,6 +31,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(!options.singerId) {
+      wx.navigateTo({
+        url: '/pages/index/index',
+      })
+      return
+    }
     this.setData({
       singerId: options.singerId
     })

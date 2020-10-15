@@ -22,7 +22,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    contentHeight: Number
+    contentHeight: Number,
+    activity: {
+      type: Boolean,
+      default: false
+    }
   },
 
   /**
@@ -32,13 +36,27 @@ Component({
     hotKey: [],
     searchHistory: [],
     query: '',
-    showDialog: false
+    showDialog: false,
+    activityKey: false,
   },
   pageLifetimes: {
     show() {
-      this._getHotkey()
-      this.getsearchBoxHeight()
-      this.setSearchHistory()
+      // this._getHotkey()
+      // this.getsearchBoxHeight()
+      // this.setSearchHistory()
+    }
+  },
+
+  observers: {
+    'activity': function (data) {
+      if (data && !this.data.activityKey) {
+        this.setData({
+          activityKey: true
+        })
+        this._getHotkey()
+        this.getsearchBoxHeight()
+        this.setSearchHistory()
+      }
     }
   },
 

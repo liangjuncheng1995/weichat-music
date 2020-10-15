@@ -1,5 +1,6 @@
 <wxs src="../../wxs/player.wxs" module="player"></wxs>
 
+
 <view class="player" wx:if="{{playlist.length > 0}}">
 
 	<view class="normal-player" wx:if="{{fullScreen}}">
@@ -87,7 +88,7 @@
 	show="{{showDialog}}"
 	type="confirm"
 	title="非常抱歉"
-	content="该歌曲需要vip才能听，请打开qq音乐App搜索该歌曲"
+	content="{{contentTip}}"
 	bind:linconfirm="confirm"
 	bind:lincancel="cancel"
 	l-cancel-class=""
@@ -96,3 +97,9 @@
 />
 
 <v-toast id="van-toast" />
+
+
+<view class="Welcomt-container" wx:if="{{Switch}}">
+  <s-welcome></s-welcome>
+</view>
+

@@ -4,8 +4,12 @@ import {
 import {
   createSong
 } from "../../model/song"
-import { mutations } from "../../store/mutations"
-import { types } from "../../store/mutation-types"
+import {
+  mutations
+} from "../../store/mutations"
+import {
+  types
+} from "../../store/mutation-types"
 
 
 // pages/recommend-detail/index.js
@@ -26,6 +30,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!options.dissid) {
+      wx.navigateTo({
+        url: '/pages/index/index',
+      })
+      return
+    }
+
     this.setData({
       dissid: options.dissid
     })
@@ -42,7 +53,7 @@ Page({
   setTitleImage(options) {
     this.setData({
       title: options.dissname,
-      bgImage: decodeURIComponent(options.imgurl) 
+      bgImage: decodeURIComponent(options.imgurl)
     })
   },
 
@@ -56,15 +67,15 @@ Page({
 
   setPlayList() {
     console.log("开始设置仓库的数据")
-    if(this.data.songs.length > 0) {
-      mutations(types.SET_PLAYLIST, this.data.songs)//保存数据到仓库
+    if (this.data.songs.length > 0) {
+      mutations(types.SET_PLAYLIST, this.data.songs) //保存数据到仓库
     }
   },
 
   _normalizeSongs(list) {
     let ret = []
     list.forEach(musicData => {
-      if(musicData.songid && musicData.albumid) {
+      if (musicData.songid && musicData.albumid) {
         ret.push(createSong(musicData))
       }
     })
@@ -77,7 +88,7 @@ Page({
     })
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       path: `/pages/recommend-detail/index?dissid=${this.data.dissid}&dissname=${this.data.title}&imgurl=${encodeURIComponent(this.data.bgImage)}`,
       title: this.data.title,

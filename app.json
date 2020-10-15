@@ -3,10 +3,8 @@
     "pages/loading/loading",
     "pages/index/index",
     "pages/home/home",
-    "pages/webView/webView",
     "pages/recommend-detail/index",
     "pages/player/index",
-    "pages/test/index",
     "pages/singer-detail/index",
     "pages/top-list/index",
     "pages/user-center/index"
@@ -18,7 +16,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "bi哩bi哩music",
+    "navigationBarTitleText": "si哩si哩",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
@@ -29,6 +27,7 @@
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
     "v-toast": "/miniprogram_npm/@vant/weapp/toast/index",
-    "m-mini-player": "/components/mini-player/index"
+    "m-mini-player": "/components/mini-player/index",
+    "s-welcome": "/components/welcome/index"
   }
 }

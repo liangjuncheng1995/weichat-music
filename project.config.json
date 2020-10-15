@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -109,8 +109,36 @@
 				},
 				{
 					"id": 6,
-					"name": "审核的用户详情页面",
+					"name": "审核的用的歌手详情页面",
 					"pathName": "pages/singer-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核使用的播放页面",
+					"pathName": "pages/player/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核的歌手详情页面",
+					"pathName": "pages/singer-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核的推荐歌曲页面",
+					"pathName": "pages/recommend-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "审核的排行榜页面",
+					"pathName": "pages/top-list/index",
 					"query": "",
 					"scene": null
 				}

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "m-header": "/components/m-header/index",
-    "tab": "/components/tab/index"
+    "tab": "/components/tab/index",
+    "s-welcome": "/components/welcome/index"
   }
 }

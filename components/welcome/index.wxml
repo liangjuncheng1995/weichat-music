@@ -1,0 +1,4 @@
+<view class="container" wx:if="{{!Switch}}" style="overflow:hidden;">
+	<view class="title theme-font-color theme-font-family" style="padding: 10px 0;text-align:center;">欢迎使用si哩si哩</view>
+  <l-button wx:if="{{show}}" width="400" height="100"  l-class="button" style="padding: 10px 0" bindtap="gotoHome">回到首页</l-button>
+</view>

@@ -64,8 +64,8 @@ Page({
     showDialog: false,
     gotoed: false,
 
-    DeleteSystemMusic: false
-
+    DeleteSystemMusic: false,
+    contentTip: "该歌曲需要vip才能听，请打开qq音乐App搜索该歌曲"
 
   },
 
@@ -74,6 +74,8 @@ Page({
    */
   onLoad: async function (options) {
     console.log(options)
+    
+    
 
     if (options.c) { //分享进来 
       await this.setShareSong(options)
@@ -95,7 +97,7 @@ Page({
     const song = {
       album: s.a,
       duration: s.b,
-      id: s.c,
+      id: Number(s.c),
       mid: s.d,
       name: s.e,
       shareAlbumId: s.f,
@@ -132,6 +134,12 @@ Page({
     console.log(this.data.playing)
 
     if (!this.data.currentSong.url) { //vip的歌曲提示
+      if(state.switch === 0) {
+        this.setData({
+          Switch: true
+        })
+        return 
+      }
       this.setData({
         showDialog: true
       })

@@ -1,5 +1,15 @@
-<view id="app">
+
+
+<view class="container" wx:if="{{!Switch}}">
+  <s-welcome></s-welcome>
+</view>
+
+<view id="app" wx:else>
 	<m-header></m-header>
   <tab></tab>
   <m-mini-player></m-mini-player>
 </view>
+
+
+
+
