@@ -40,7 +40,8 @@ class Song {
     const result = await this.GetLyric(this.mid)
     if (result.retcode === ERR_OK) {
       this.lyric = Base64.decode(result.lyric)
-      return this.lyric
+      let lyric = this.lyric.replaceAll("&apos;", "'");
+      return lyric
     } else {
       return 'no lyric'
     }
@@ -141,7 +142,7 @@ class Song {
       let temID = arr1[i].songmid
       for (let j = 0; j < ReturnArr.length; j++) {
         if (temID == ReturnArr[j].mid) {
-          ReturnArr[j]['url'] == arr1[i]["purl"]
+          ReturnArr[j]['url'] = arr1[i]["purl"]
           break;
         }
       }

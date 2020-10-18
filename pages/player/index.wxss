@@ -46,7 +46,7 @@
 .normal-player .middle {
   position: fixed;
   width: 100%;
-  top: 160rpx;
+  top: 180rpx;
   bottom: 340rpx;
   white-space: nowrap;
   font-size: 0;
@@ -88,16 +88,27 @@
 
 .normal-player .middle .middle-l .playing-lyric-container {
   width: 80%;
-  margin: 60rpx auto 0 auto;
+  margin: 25rpx auto 0 auto;
   overflow: hidden;
   text-align: center;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .normal-player .middle .middle-l .playing-lyric-container .playing-lyric {
-  height: 40rpx;
+  /* height: 80rpx; */
   line-height: 40rpx;
   font-size: 28rpx;
-  /* color: $theme-color-bold; */
+  white-space:pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 
@@ -108,6 +119,7 @@
   vertical-align: top;
   width: 100%;
   height: 100%;
+  -webkit-mask-image: linear-gradient(to bottom,rgba(255,255,255,1) 0,rgba(255,255,255,1) 15%,rgba(255,255,255,1) 25%,rgba(255,255,255,1) 75%,rgba(255,255,255,.6) 85%,rgba(255,255,255,0) 100%);
   /* // overflow: hidden; */
   /* overflow-y: scroll; */
 }
@@ -120,9 +132,10 @@
 }
 
 .middle-r .lyric-container .text {
-  line-height: 64rpx;
+  /* line-height: 64rpx; */
   color: rgba(255, 255, 255, 0.5);
   font-size: 28rpx;
+  white-space: pre-line;
 }
 .middle-r .lyric-container .notext {
   line-height: 64rpx;

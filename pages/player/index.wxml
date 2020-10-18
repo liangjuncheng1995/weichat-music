@@ -29,8 +29,8 @@
 			<view class="middle-r" style="transition-duration:{{transitionDurationLyricList}};transform:translate3d({{offsetWidth}}px,0,0)">
 				<scroll-view scroll-top="{{scrollTop}}" scroll-with-animation scroll-y style="height:{{scrollHeight}}rpx">
 					<view class="lyric-container">
-						<view wx:if="{{currentLyric}}">
-							<view class="{{currentLineNum === index ? 'text current' : 'text'}}" wx:key="index" wx:for="{{currentLyric.lines}}">
+						<view wx:if="{{currentLyric}}" class="lyric-scroll">
+							<view class="{{currentLineNum === index ? 'text current' : 'text'}} scroll-lyric-{{index}}" wx:key="index" wx:for="{{currentLyric.lines}}">
 								{{item.txt}}
 							</view>
 						</view>

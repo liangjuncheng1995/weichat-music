@@ -24,11 +24,12 @@ import {
   playMode
 } from "../../config/index"
 import {
-  shuffle
+  shuffle, sumArr
 } from "../../utils/utils"
 import
 Toast
 from "../../miniprogram_npm/@vant/weapp/toast/toast.js"
+import { Dom } from "../../utils/dom"
 
 const app = getApp()
 const getter = app.getters()
@@ -65,8 +66,9 @@ Page({
     gotoed: false,
 
     DeleteSystemMusic: false,
-    contentTip: "该歌曲需要vip才能听，请打开qq音乐App搜索该歌曲"
-
+    contentTip: "该歌曲需要vip才能听，请打开qq音乐App搜索该歌曲",
+    getLyricScroll: [],
+    getMiddle_R_Height: 0,
   },
 
   /**
@@ -330,6 +332,11 @@ Page({
 
   async getLyric() {
     const resultLyric = await this.data.currentSong.getLyric()
+    this.setData({
+      getMiddle_R_Height: 0,
+      scrollTop: 0,
+      currentLineNum: 0
+    })
     if (resultLyric != 'no lyric' && resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") === -1) {
       this.setData({
         currentLyric: new Lyric(resultLyric, this.handleLyric)
@@ -366,27 +373,53 @@ Page({
     }
   },
 
-  handleLyric({
+  async handleLyric({
     lineNum,
     txt
   }) {
+    
     this.setData({
       currentLineNum: lineNum
     })
-    if (lineNum > 5) {
-      let unit = 32;
-      let num = lineNum * unit - 5 * unit;
+    this.setData({
+      playingLyric: txt
+    })
+
+
+    if(this.data.getMiddle_R_Height === 0) {
+      await this.getLyricScroll()
+    }
+
+    let LyricScrollHeight = sumArr(this.data.getLyricScroll, lineNum)
+    if(LyricScrollHeight > Math.floor(this.data.getMiddle_R_Height / 2 - 38)) {
+      let scrollSum = LyricScrollHeight - Math.floor(this.data.getMiddle_R_Height / 2 - 38)
       this.setData({
-        scrollTop: num
+        scrollTop: scrollSum
       })
     } else {
       this.setData({
         scrollTop: 0
       })
     }
+  },
+
+  async getLyricScroll() {
+    let getMiddle_R_Height = await Dom(".middle-r", this)
+    let all_arr = await this.getScrollArr()
     this.setData({
-      playingLyric: txt
+      getMiddle_R_Height: getMiddle_R_Height.height,
+      getLyricScroll: all_arr
     })
+  },
+
+  async getScrollArr() {
+    let lines = this.data.currentLyric.lines
+    let arr = []
+    for (let index = 0; index < lines.length; index++) {
+      let heightDom = await Dom(`.scroll-lyric-${index}`, this)
+      arr.push(heightDom.height)
+    }
+    return arr
   },
 
   middleTouchStart(e) {

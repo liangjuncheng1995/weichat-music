@@ -155,8 +155,12 @@ Component({
 
       // app.watchCurrentIndex(mutations, "currentIndex", FinishPlaylist);
       let self = this
+      
 
       function FinishPlaylist(currentIndex) {
+        if(state.fullScreen) {//如果在nolmal播放器页面切换了循环的状态
+          return
+        }
         console.log("play-list组件")
         self.update()
       }

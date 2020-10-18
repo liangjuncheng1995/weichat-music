@@ -3,6 +3,9 @@ require('./common/runtime.js')
 require('./common/vendor.js')
 require('./common/main.js')
 
+String.prototype.replaceAll = function(s1, s2) {
+  return this.replace(new RegExp(s1, "gm"), s2);
+}
 
 import {
   state

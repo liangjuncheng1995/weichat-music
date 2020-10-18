@@ -43,7 +43,7 @@ Component({
     show() {
       // this._getHotkey()
       // this.getsearchBoxHeight()
-      // this.setSearchHistory()
+      this.setSearchHistory()
     }
   },
 

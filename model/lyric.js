@@ -59,6 +59,13 @@ export class Lyric {
     this.lines.sort((a, b) => {
       return a.time - b.time
     })
+
+    if(this.lines[0].time != 0) {
+      this.lines.unshift({
+        time: 0,
+        txt: this.lines[3].txt
+      })
+    }
   }
 
   _findCurNum(time) {

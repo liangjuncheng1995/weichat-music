@@ -30,9 +30,19 @@ function shuffle(arr) {
 }
 
 
+function sumArr(arr, n) {
+  let sum = 0
+  for (let index = 0; index < n; index++) {
+    sum = sum + arr[index]
+  }
+  return sum
+}
+
+
 // 代理模式
 
 export {
   promisic,
-  shuffle
+  shuffle,
+  sumArr
 }
