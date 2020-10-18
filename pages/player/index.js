@@ -108,7 +108,7 @@ Page({
     await insertSong(song)
   },
 
-  loadingData() {
+  async loadingData() {
 
     const res = app.getters()
     console.log(res)
@@ -135,6 +135,9 @@ Page({
     console.log("播放的状态：")
     console.log(this.data.playing)
 
+    
+    
+
     if (!this.data.currentSong.url) { //vip的歌曲提示
       if(state.switch === 0) {
         this.setData({
@@ -152,7 +155,13 @@ Page({
       deleteSongList()
       return
     }
-
+     
+    if (this.data.currentLyric) {
+      //切换歌曲的时候，如果已经有this.currentLyric了就停止之前
+      this.data.currentLyric.stop();
+    }
+    await this.getLyric() //获取歌词
+    
     if (state.playId !== this.data.currentSong.id) {
       //设置正在播放的歌曲id
       mutations(types.SET_PLAY_ID, this.data.currentSong.id)
@@ -216,12 +225,8 @@ Page({
       console.log("音乐错误")
     })
 
-    if (this.data.currentLyric) {
-      //切换歌曲的时候，如果已经有this.currentLyric了就停止之前
-      this.data.currentLyric.stop();
-    }
+  
 
-    this.getLyric() //获取歌词
     this.setScrollHeight() //设置歌词的滚动区域
   },
 
@@ -332,11 +337,13 @@ Page({
 
   async getLyric() {
     const resultLyric = await this.data.currentSong.getLyric()
+    console.log("需要重置：")
     this.setData({
       getMiddle_R_Height: 0,
       scrollTop: 0,
       currentLineNum: 0
     })
+   
     if (resultLyric != 'no lyric' && resultLyric.indexOf("此歌曲为没有填词的纯音乐，请您欣赏") === -1) {
       this.setData({
         currentLyric: new Lyric(resultLyric, this.handleLyric)
@@ -346,6 +353,7 @@ Page({
         this.data.currentLyric.play()
       } else { //点击同一首歌曲的时候，再进来需要跟进歌词的进度条位置
         const audioCurrentTime = audio.currentTime || 0
+        console.log(audioCurrentTime)
         const percent = audioCurrentTime / this.data.currentSong.duration
         if (this.data.playing) {
           this.data.currentLyric.seek(audioCurrentTime * 1000)
@@ -377,7 +385,6 @@ Page({
     lineNum,
     txt
   }) {
-    
     this.setData({
       currentLineNum: lineNum
     })
@@ -385,8 +392,8 @@ Page({
       playingLyric: txt
     })
 
-
     if(this.data.getMiddle_R_Height === 0) {
+      console.log("重新获取高度：")
       await this.getLyricScroll()
     }
 
