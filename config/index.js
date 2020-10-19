@@ -1,6 +1,5 @@
 const config = {
-  // apiBaseUrl: "http://192.168.1.40:6001/recordApi"
-  apiBaseUrl: "https://www.ljcpro.cn/recordApi"
+  apiBaseUrl: "http://192.168.1.40:6001/recordApi" //可更换自己的服务器api
 }
 
 const options = {
